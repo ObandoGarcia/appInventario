@@ -1,7 +1,7 @@
 <aside id="sidebar">
     <div class="d-flex">
         <button class="toggle-btn" type="button">
-            <i class="lni lni-grid-alt"></i>
+            <i class="bi bi-list"></i>
         </button>
         <div class="sidebar-logo">
             <a href="#">Mc Constructores</a>
@@ -9,15 +9,21 @@
     </div>
     <ul class="sidebar-nav">
         <li class="sidebar-item">
-            <a href="#" class="sidebar-link">
-                <i class="lni lni-user"></i>
-                <span>Usuarios</span>
+            <a href="{{ route('marcas') }}" class="sidebar-link">
+                <i class="bi bi-substack"></i>
+                <span>Marcas</span>
             </a>
         </li>
         <li class="sidebar-item">
-            <a href="#" class="sidebar-link">
-                <i class="lni lni-agenda"></i>
-                <span>Maquinarias</span>
+            <a href="{{ route('proveedores') }}" class="sidebar-link">
+                <i class="bi bi-box-seam-fill"></i>
+                <span>Proveedores</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
+            <a href="{{ route('materiales') }}" class="sidebar-link">
+                <i class="bi bi-stack"></i>
+                <span>Materiales</span>
             </a>
         </li>
         <li class="sidebar-item">
@@ -35,22 +41,10 @@
                 </li>
             </ul>
         </li>
-        <li class="sidebar-item">
-            <a href="#" class="sidebar-link">
-                <i class="lni lni-popup"></i>
-                <span>Notification</span>
-            </a>
-        </li>
-        <li class="sidebar-item">
-            <a href="#" class="sidebar-link">
-                <i class="lni lni-cog"></i>
-                <span>Setting</span>
-            </a>
-        </li>
     </ul>
     <div class="sidebar-footer">
         <a href="{{ route('cerrar_sesion') }}" class="sidebar-link">
-            <i class="lni lni-exit"></i>
+            <i class="bi bi-box-arrow-in-left"></i>
             <span>Cerrar sesion</span>
         </a>
     </div>

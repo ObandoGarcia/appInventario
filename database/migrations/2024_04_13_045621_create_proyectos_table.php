@@ -8,27 +8,21 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('materiales', function (Blueprint $table) {
+        Schema::create('proyectos', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->integer('cantidad');
-            $table->text('descripcion')
+            $table->string('ubicacion');
+            $table->dateTime('fecha_de_incio');
+            $table->dateTime('fecha_de_finalizacion')
                 ->nullable();
-            $table->dateTime('fecha_de_ingreso');
-            $table->decimal('precio_por_unidad', total: 8, places: 2, unsigned:false);
-            $table->foreignId('marca_id')
+            $table->foreignId('encargado_id')
                 ->nullable()
-                ->constrained('marcas')
+                ->constrained('encargados_de_proyectos')
                 ->cascadeOnUpdate()
                 ->nullOnDelete();
             $table->foreignId('estado_id')
                 ->nullable()
                 ->constrained('estados')
-                ->cascadeOnUpdate()
-                ->nullOnDelete();
-            $table->foreignId('proveedor_id')
-                ->nullable()
-                ->constrained('proveedores')
                 ->cascadeOnUpdate()
                 ->nullOnDelete();
             $table->foreignId('usuario_id')
@@ -42,6 +36,6 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('materiales');
+        Schema::dropIfExists('proyectos');
     }
 };

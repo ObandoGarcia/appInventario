@@ -8,14 +8,19 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('materiales', function (Blueprint $table) {
+        Schema::create('maquinarias', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->integer('cantidad');
+            $table->string('vehiculo')
+                ->nullable();
+            $table->string('placas')
+                ->nullable();
+            $table->string('modelo');
+            $table->string('serie');
             $table->text('descripcion')
                 ->nullable();
             $table->dateTime('fecha_de_ingreso');
-            $table->decimal('precio_por_unidad', total: 8, places: 2, unsigned:false);
+            $table->boolean('disponible');
             $table->foreignId('marca_id')
                 ->nullable()
                 ->constrained('marcas')
@@ -42,6 +47,6 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('materiales');
+        Schema::dropIfExists('maquinarias');
     }
 };
