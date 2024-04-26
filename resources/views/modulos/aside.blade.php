@@ -27,6 +27,18 @@
             </a>
         </li>
         <li class="sidebar-item">
+            <a href="{{ route('encargados') }}" class="sidebar-link">
+                <i class="bi bi-person-lines-fill"></i>
+                <span>Encargados de proyecto</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
+            <a href="{{ route('proyectos') }}" class="sidebar-link">
+                <i class="bi bi-kanban-fill"></i>
+                <span>Proyectos</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
             <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
                 data-bs-target="#auth" aria-expanded="false" aria-controls="auth">
                 <i class="lni lni-protection"></i>

@@ -9,11 +9,13 @@
                     @csrf
                     @method('PUT')
 
-                    <label for="nombre">Nombre</label>
-                    <input type="text" name="nombre" class="form-control" value="{{ $marca->nombre }}">
-                    @error('nombre')
-                        <p class="text-danger">{{ $message }}</p>
-                    @enderror
+                    <div class="mb-3">
+                        <label class="form-label" for="nombre">Nombre</label>
+                        <input type="text" name="nombre" class="form-control" value="{{ $marca->nombre }}">
+                        @error('nombre')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
 
                     <br>
                     <input type="submit" value="Guardar registro" class="btn btn-primary">

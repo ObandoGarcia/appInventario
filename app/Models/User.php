@@ -52,4 +52,16 @@ class User extends Authenticatable
     {
         return $this->hasMany(Material::class);
     }
+
+    //Encargados de proyecto
+    public function encargados():HasMany
+    {
+        return $this->hasMany(Encargado::class);
+    }
+
+    //Proyectos
+    public function proyectos():HasMany
+    {
+        return $this->hasMany(Proyecto::class);
+    }
 }

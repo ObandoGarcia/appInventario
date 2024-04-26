@@ -7,31 +7,26 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Estado extends Model
+class Encargado extends Model
 {
     use HasFactory;
 
-    protected $table = 'estados';
+    protected $table = 'encargados_de_proyectos';
 
     //Relaciones
-    //Relacion estado usuario
+    //Relacione entre usuario y encargados
     public function usuario():BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'usuario_id')->withDefault();
     }
 
-    //Relacion material y estado
-    public function material():HasMany
+    //Relaciones entre estados y encargados de proyecto
+    public function estados():BelongsTo
     {
-        return $this->hasMany(Material::class);
+        return $this->belongsTo(Estado::class, 'estado_id')->withDefault();
     }
 
-    //Relacion entre encargado y estado
-    public function encargado():HasMany
-    {
-        return $this->hasMany(Encargado::class);
-    }
-
+    //Relacion entre
     public function proyectos():HasMany
     {
         return $this->hasMany(Proyecto::class);

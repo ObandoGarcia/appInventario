@@ -21,8 +21,8 @@ class Marca extends Model
     }
 
     //Relacion de uno a muchos entre marca y materiales
-    public function marcas():HasMany
+    public function materiales():HasMany
     {
-        return $this->hasMany(Marca::class);
+        return $this->hasMany(Material::class);
     }
 }

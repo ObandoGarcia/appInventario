@@ -99,7 +99,6 @@ class MaterialesController extends Controller
     {
         $material = Material::find($id);
         $material->delete();
-
         notify()->success('Registro eliminado correctamente', 'Informacion');
 
         return redirect()->route('materiales');
