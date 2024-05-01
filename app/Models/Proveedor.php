@@ -25,4 +25,10 @@ class Proveedor extends Model
     {
         return $this->hasMany(Material::class);
     }
+
+    //Relacione entre proveedor y maquinarias
+    public function maquinarias():HasMany
+    {
+        return $this->hasMany(Maquinaria::class);
+    }
 }

@@ -20,7 +20,6 @@ return new class extends Migration
                 ->nullable();
             $table->boolean('procesado')
                 ->nullable();
-            $table->boolean('proyecto_activo');
             $table->foreignId('material_id')
                 ->nullable()
                 ->constrained('materiales')

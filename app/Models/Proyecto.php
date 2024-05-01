@@ -13,21 +13,21 @@ class Proyecto extends Model
     protected $table = 'proyectos';
 
     //Relaciones
+    //Relacion entre estado y usuario
+    public function usuario(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'usuario_id')->withDefault();
+    }
+
     //Relacion entre encargados y proyectos
-    public function encargados():BelongsTo
+    public function encargados(): BelongsTo
     {
         return $this->belongsTo(Encargado::class, 'encargado_id')->withDefault();
     }
 
     //Relacion entre estado y proyectos
-    public function estado():BelongsTo
+    public function estado(): BelongsTo
     {
         return $this->belongsTo(Estado::class, 'estado_id')->withDefault();
-    }
-
-    //Relacion entre estado y usuario
-    public function usuario():BelongsTo
-    {
-        return $this->belongsTo(User::class, 'usuario_id')->withDefault();
     }
 }

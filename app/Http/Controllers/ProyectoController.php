@@ -18,8 +18,13 @@ class ProyectoController extends Controller
 
     public function create()
     {
-        $encargados = Encargado::all();
-        $estado = Estado::all();
+        $encargados = Encargado::where('estado_id', '=', 1)
+            ->get();
+        $estado = Estado::where('nombre', '=', 'activo')
+            ->orwhere('nombre', '=', 'inactivo')
+            ->orwhere('nombre', '=', 'completado')
+            ->orwhere('nombre', '=', 'cancelado')
+            ->get();
 
         return view('proyecto.create', compact('encargados', 'estado'));
     }
@@ -38,6 +43,7 @@ class ProyectoController extends Controller
         $proyecto->ubicacion = $request->ubicacion;
         $proyecto->fecha_de_incio = $request->fecha_de_inicio;
         $proyecto->fecha_de_finalizacion = $request->fecha_de_finalizacion;
+        $proyecto->encargado_id = $request->encargado;
         $proyecto->estado_id = $request->estado;
         $proyecto->usuario_id = auth()->user()->id;
         $proyecto->save();
@@ -48,16 +54,37 @@ class ProyectoController extends Controller
 
     public function edit($id)
     {
+        $encargados = Encargado::all();
+        $estado = Estado::where('nombre', '=', 'activo')
+            ->orwhere('nombre', '=', 'inactivo')
+            ->orwhere('nombre', '=', 'completado')
+            ->orwhere('nombre', '=', 'cancelado')
+            ->get();
+        $proyecto = Proyecto::find($id);
 
+        return view('proyecto.edit', compact('encargados', 'estado', 'proyecto'));
     }
 
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'nombre' => ['required', 'string', 'min:2'],
+            'ubicacion' => ['required', 'string', 'min:2'],
+            'fecha_de_inicio' => ['required', 'date'],
+            'fecha_de_finalizacion' => ['nullable']
+        ]);
 
-    }
+        $proyecto = Proyecto::find($id);
+        $proyecto->nombre = $request->nombre;
+        $proyecto->ubicacion = $request->ubicacion;
+        $proyecto->fecha_de_incio = $request->fecha_de_inicio;
+        $proyecto->fecha_de_finalizacion = $request->fecha_de_finalizacion;
+        $proyecto->encargado_id = $request->encargado;
+        $proyecto->estado_id = $request->estado;
+        $proyecto->usuario_id = auth()->user()->id;
+        $proyecto->update();
+        notify()->success('Registro actualizado correctamente', 'Informacion');
 
-    public function destroy($id)
-    {
-
+        return redirect()->route('proyectos');
     }
 }

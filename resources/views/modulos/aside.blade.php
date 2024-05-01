@@ -4,7 +4,7 @@
             <i class="bi bi-list"></i>
         </button>
         <div class="sidebar-logo">
-            <a href="#">Mc Constructores</a>
+            <a href="{{ route('paneles') }}">Mc Constructores</a>
         </div>
     </div>
     <ul class="sidebar-nav">
@@ -36,6 +36,12 @@
             <a href="{{ route('proyectos') }}" class="sidebar-link">
                 <i class="bi bi-kanban-fill"></i>
                 <span>Proyectos</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
+            <a href="{{ route('maquinarias') }}" class="sidebar-link">
+                <i class="bi bi-car-front"></i>
+                <span>Maquinarias</span>
             </a>
         </li>
         <li class="sidebar-item">

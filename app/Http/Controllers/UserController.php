@@ -20,7 +20,7 @@ class UserController extends Controller
         {
             request()->session()->regenerateToken();
             notify()->success('Has iniciado sesion correctamente', 'Informacion');
-            return redirect('dashboard');
+            return redirect('paneles');
         }
 
         return view('login');
@@ -32,7 +32,7 @@ class UserController extends Controller
         $request->session()->invalidate();
         request()->session()->regenerateToken();
         notify()->success('Has cerrado sesion', 'Informacion');
-        
+
         return redirect()->route('bienvenido');
     }
 }

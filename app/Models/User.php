@@ -64,4 +64,11 @@ class User extends Authenticatable
     {
         return $this->hasMany(Proyecto::class);
     }
+
+    //Maquinarias
+    public function maquinarias():HasMany
+    {
+        return $this->hasMany(Maquinaria::class);
+    }
 }
+

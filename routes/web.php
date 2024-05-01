@@ -1,16 +1,19 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PanelController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MarcasController;
 use App\Http\Controllers\ProveedoresController;
 use App\Http\Controllers\MaterialesController;
 use App\Http\Controllers\EncargadosController;
 use App\Http\Controllers\ProyectoController;
+use App\Http\Controllers\MaquinariasController;
 
 Route::view('/', 'welcome')->name('bienvenido');
 Route::view('login', 'login')->name('login')->middleware('guest');
 Route::view('dashboard', 'dashboard')->name('dashboard')->middleware('auth');
+Route::get('paneles', [PanelController::class, 'index'])->name('paneles')->middleware('auth');
 
 Route::post('iniciar_sesion', [UserController::class, 'iniciar_sesion'])->name('iniciar_sesion');
 Route::get('cerrar_sesion', [UserController::class, 'cerrar_sesion'])->name('cerrar_sesion');
@@ -38,7 +41,6 @@ Route::get('crear_material', [MaterialesController::class, 'create'])->name('cre
 Route::post('guardar_material', [MaterialesController::class, 'store'])->name('guardar_material')->middleware('auth');
 Route::get('editar_material/{id}', [MaterialesController::class, 'edit'])->name('editar_material')->middleware('auth');
 Route::put('actualizar_material/{id}', [MaterialesController::class, 'update'])->name('actualizar_material')->middleware('auth');
-Route::delete('eliminar_material/{id}', [MaterialesController::class, 'destroy'])->name('eliminar_material')->middleware('auth');
 
 //Encargados
 Route::get('encargados',[EncargadosController::class, 'index'])->name('encargados')->middleware('auth');
@@ -54,4 +56,11 @@ Route::get('crear_proyecto', [ProyectoController::class, 'create'])->name('crear
 Route::post('guardar_proyecto', [ProyectoController::class, 'store'])->name('guardar_proyecto')->middleware('auth');
 Route::get('editar_proyecto/{id}', [ProyectoController::class, 'edit'])->name('editar_proyecto')->middleware('auth');
 Route::put('actualizar_proyecto/{id}', [ProyectoController::class, 'update'])->name('actualizar_proyecto')->middleware('auth');
-Route::delete('eliminar_proyecto/{id}', [ProyectoController::class, 'destroy'])->name('eliminar_proyecto')->middleware('auth');
+
+//Maquinarias
+Route::get('maquinarias',[MaquinariasController::class, 'index'])->name('maquinarias')->middleware('auth');
+Route::get('ver_maquinaria/{id}', [MaquinariasController::class, 'show'])->name('ver_maquinaria')->middleware('auth');
+Route::get('crear_maquinaria', [MaquinariasController::class, 'create'])->name('crear_maquinaria')->middleware('auth');
+Route::post('guardar_maquinaria', [MaquinariasController::class, 'store'])->name('guardar_maquinaria')->middleware('auth');
+Route::get('editar_maquinaria/{id}', [MaquinariasController::class, 'edit'])->name('editar_maquinaria')->middleware('auth');
+Route::put('actualizar_maquinaria/{id}', [MaquinariasController::class, 'update'])->name('actualizar_maquinaria')->middleware('auth');

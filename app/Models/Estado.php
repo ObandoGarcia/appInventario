@@ -32,8 +32,15 @@ class Estado extends Model
         return $this->hasMany(Encargado::class);
     }
 
+    //Relacion entre estados y proyectos
     public function proyectos():HasMany
     {
         return $this->hasMany(Proyecto::class);
+    }
+
+    //Relacion entre estados y maqunarias
+    public function maquinarias():HasMany
+    {
+        return $this->hasMany(Maquinaria::class);
     }
 }

@@ -46,6 +46,11 @@
                                         @csrf
                                         @method('DELETE')
                                         <div class="modal-body">
+                                            <div class="alert alert-danger d-flex align-items-center" role="alert">
+                                                <div>
+                                                    Si continuas la informacion del registro no se podra recuperar de ninguna manera
+                                                </div>
+                                            </div>
                                             <label for="">Nombre</label>
                                             <input type="text" class="form-control" value="{{ $itemProveedor->nombre }}" readonly>
                                         </div>

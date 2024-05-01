@@ -18,7 +18,9 @@ class EncargadosController extends Controller
 
     public function create()
     {
-        $estados = Estado::all();
+        $estados = Estado::where('nombre', '=', 'activo')
+            ->orwhere('nombre', '=', 'inactivo')
+            ->get();
 
         return view('encargados.create', compact('estados'));
     }
@@ -46,7 +48,9 @@ class EncargadosController extends Controller
 
     public function edit(string $id)
     {
-        $estados = Estado::all();
+        $estados = Estado::where('nombre', '=', 'activo')
+            ->orwhere('nombre', '=', 'inactivo')
+            ->get();
         $encargado = Encargado::find($id);
 
         return view('encargados.edit', compact('estados', 'encargado'));

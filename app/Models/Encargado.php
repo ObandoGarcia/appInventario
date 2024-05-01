@@ -15,18 +15,18 @@ class Encargado extends Model
 
     //Relaciones
     //Relacione entre usuario y encargados
-    public function usuario():BelongsTo
+    public function usuario(): BelongsTo
     {
         return $this->belongsTo(User::class, 'usuario_id')->withDefault();
     }
 
     //Relaciones entre estados y encargados de proyecto
-    public function estados():BelongsTo
+    public function estados(): BelongsTo
     {
         return $this->belongsTo(Estado::class, 'estado_id')->withDefault();
     }
 
-    //Relacion entre
+    //
     public function proyectos():HasMany
     {
         return $this->hasMany(Proyecto::class);

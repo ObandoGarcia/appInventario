@@ -28,41 +28,25 @@
                             <td>{{ $itemProyecto->fecha_de_incio}}</td>
                             <td>{{ $itemProyecto->fecha_de_finalizacion }}</td>
                             <td>{{ $itemProyecto->encargados->nombre }}</td>
-                            <td>{{ $itemProyecto->estado->nombre }}</td>
+                            <td>
+                                @if ($itemProyecto->estado->nombre == 'activo')
+                                    <span class="badge text-bg-primary">{{ $itemProyecto->estado->nombre }}</span>
+                                @elseif ($itemProyecto->estado->nombre == 'inactivo')
+                                    <span class="badge text-bg-danger">{{ $itemProyecto->estado->nombre }}</span>
+                                @elseif ($itemProyecto->estado->nombre == 'completado')
+                                    <span class="badge text-bg-success">{{ $itemProyecto->estado->nombre }}</span>
+                                @else
+                                    <span class="badge text-bg-secondary">{{ $itemProyecto->estado->nombre }}</span>
+                                @endif
+
+                            </td>
                             <td>{{ $itemProyecto->usuario->name }}</td>
                             <td>
                                 <a href="{{ route('editar_proyecto', $itemProyecto->id) }}">
                                     <button class="btn btn-warning">Editar</button>
                                 </a>
-                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDeleteProyecto{{ $itemProyecto->id }}">Eliminar</button>
                             </td>
                         </tr>
-
-                        <!-- Modal -->
-                        <div class="modal fade" id="modalDeleteProyecto{{ $itemProyecto->id }}" tabindex="-1" aria-labelledby="modalDeleteProyecto"
-                            aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Estas seguro de eliminar este registro?</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <form action="{{ route('eliminar_encargado', $itemProyecto->id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <div class="modal-body">
-                                            <label for="">Nombre</label>
-                                            <input type="text" class="form-control" value="{{ $itemProyecto->nombre }}" readonly>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                            <input type="submit" class="btn btn-primary" value="Eliminar registro">
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
                     @endforeach
                 </tbody>
             </table>

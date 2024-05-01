@@ -18,9 +18,6 @@ return new class extends Migration
             $table->integer('cantidad');
             $table->integer('cantidad_devuelta')
                 ->nullable();
-            $table->boolean('procesado')
-                ->nullable();
-            $table->boolean('proyecto_activo');
             $table->foreignId('herramienta_id')
                 ->nullable()
                 ->constrained('herramientas')

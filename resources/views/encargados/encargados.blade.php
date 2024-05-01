@@ -2,7 +2,7 @@
 
 @section('contenido-dinamico')
     <div>
-        <h1>Encardos de proyectos</h1>
+        <h1>Encargados de proyectos</h1>
         <a href="{{ route('crear_encargado') }}"><button class="btn btn-primary">Agregar encargado de proyecto</button></a>
         <br>
         <br>
@@ -24,7 +24,12 @@
                             <td>{{ $itemEncargado->nombre }}</td>
                             <td>{{ $itemEncargado->email }}</td>
                             <td>{{ $itemEncargado->telefono }}</td>
-                            <td>{{ $itemEncargado->estados->nombre }}</td>
+                            <td>@if ($itemEncargado->estados->nombre == 'activo')
+                                <span class="badge text-bg-primary">activo</span>
+                                @else
+                                <span class="badge text-bg-danger">inactivo</span>
+                                @endif
+                            </td>
                             <td>{{ $itemEncargado->usuario->name }}</td>
                             <td>
                                 <a href="{{ route('editar_encargado', $itemEncargado->id) }}">

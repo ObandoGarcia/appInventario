@@ -21,7 +21,9 @@ class MaterialesController extends Controller
     {
         $marcas = Marca::all();
         $proveedores = Proveedor::all();
-        $estados = Estado::all();
+        $estados = Estado::where('nombre', '=', 'nuevo')
+            ->orwhere('nombre', '=', 'usado')
+            ->get();
 
         return view('material.create', compact('marcas', 'proveedores', 'estados'));
     }
@@ -63,7 +65,9 @@ class MaterialesController extends Controller
     {
         $marcas = Marca::all();
         $proveedores = Proveedor::all();
-        $estados = Estado::all();
+        $estados = Estado::where('nombre', '=', 'nuevo')
+            ->orwhere('nombre', '=', 'usado')
+            ->get();
         $material = Material::find($id);
 
         return view('material.edit', compact('material', 'marcas', 'proveedores', 'estados'));
@@ -91,15 +95,6 @@ class MaterialesController extends Controller
         $material->usuario_id = auth()->user()->id;
         $material->update();
         notify()->success('Registro actualizado correctamente', 'Informacion');
-
-        return redirect()->route('materiales');
-    }
-
-    public function destroy($id)
-    {
-        $material = Material::find($id);
-        $material->delete();
-        notify()->success('Registro eliminado correctamente', 'Informacion');
 
         return redirect()->route('materiales');
     }
