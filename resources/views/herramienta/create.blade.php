@@ -2,10 +2,10 @@
 
 @section('contenido-dinamico')
     <div>
-        <h1>Registrar una nueva maquinaria</h1>
+        <h1>Registrar una nueva herramienta</h1>
         <div class="row">
             <div class=" col-6">
-                <form action="{{ route('guardar_maquinaria') }}" method="POST">
+                <form action="{{ route('guardar_herramienta') }}" method="POST">
                     @csrf
 
                     <div class="mb-3">
@@ -17,37 +17,10 @@
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label" for="vehiculo">Vehiculo</label>
-                        <input type="text" name="vehiculo" class="form-control"
-                            value="{{ old('vehiculo') }}">
-                        @error('vehiculo')
-                            <p class="text-danger">{{ $message }}</p>
-                        @enderror
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label" for="placas">Placas</label>
-                        <input type="text" name="placas" class="form-control"
-                            value="{{ old('placas') }}">
-                        @error('placas')
-                            <p class="text-danger">{{ $message }}</p>
-                        @enderror
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label" for="modelo">Modelo</label>
-                        <input type="text" name="modelo" class="form-control"
-                            value="{{ old('modelo') }}">
-                        @error('modelo')
-                            <p class="text-danger">{{ $message }}</p>
-                        @enderror
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label" for="serie">Serie</label>
-                        <input type="text" name="serie" class="form-control"
-                            value="{{ old('serie') }}">
-                        @error('serie')
+                        <label class="form-label" for="cantidad">Cantidad</label>
+                        <input type="number" min="0" step="1" name="cantidad" class="form-control"
+                            value="{{ old('cantidad') }}">
+                        @error('cantidad')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
@@ -58,15 +31,6 @@
                         {{ old('descripcion') }}
                     </textarea>
                         @error('descripcion')
-                            <p class="text-danger">{{ $message }}</p>
-                        @enderror
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label" for="fecha_de_ingreso">Fecha de ingreso</label>
-                        <input type="datetime-local" name="fecha_de_ingreso" class="form-control"
-                            value="{{ old('fecha_de_ingreso') }}">
-                        @error('fecha_de_ingreso')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>

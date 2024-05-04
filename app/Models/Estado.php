@@ -43,4 +43,16 @@ class Estado extends Model
     {
         return $this->hasMany(Maquinaria::class);
     }
+
+    //Relacion entre estados y herramientas
+    public function herramientas():HasMany
+    {
+        return $this->hasMany(Herramientas::class);
+    }
+
+    //Relacion entre estados y conductores
+    public function conductores():HasMany
+    {
+        return $this->hasMany(Conductor::class);
+    }
 }

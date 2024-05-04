@@ -40,13 +40,12 @@ class EncargadosController extends Controller
         $encargado->estado_id = $request->estado;
         $encargado->usuario_id = auth()->user()->id;
         $encargado->save();
-
         notify()->success('Registro creado correctamente', 'Informacion');
 
         return redirect()->route('encargados');
     }
 
-    public function edit(string $id)
+    public function edit($id)
     {
         $estados = Estado::where('nombre', '=', 'activo')
             ->orwhere('nombre', '=', 'inactivo')

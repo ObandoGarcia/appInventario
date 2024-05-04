@@ -31,6 +31,7 @@ return new class extends Migration
                 ->nullable();
             $table->string('recibido_por');
             $table->string('entregado_por');
+            $table->integer('numero_de_impresiones');
             $table->foreignId('usuario_id')
                 ->nullable()
                 ->constrained('users')

@@ -12,6 +12,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombre');
             $table->integer('cantidad');
+            $table->integer('disponible');
             $table->string('descripcion')
                 ->nullable();
             $table->foreignId('marca_id')

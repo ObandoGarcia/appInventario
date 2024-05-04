@@ -9,6 +9,9 @@ use App\Http\Controllers\MaterialesController;
 use App\Http\Controllers\EncargadosController;
 use App\Http\Controllers\ProyectoController;
 use App\Http\Controllers\MaquinariasController;
+use App\Http\Controllers\HerramientasController;
+use App\Http\Controllers\ConductoresController;
+use App\Http\Controllers\BoletasController;
 
 Route::view('/', 'welcome')->name('bienvenido');
 Route::view('login', 'login')->name('login')->middleware('guest');
@@ -64,3 +67,25 @@ Route::get('crear_maquinaria', [MaquinariasController::class, 'create'])->name('
 Route::post('guardar_maquinaria', [MaquinariasController::class, 'store'])->name('guardar_maquinaria')->middleware('auth');
 Route::get('editar_maquinaria/{id}', [MaquinariasController::class, 'edit'])->name('editar_maquinaria')->middleware('auth');
 Route::put('actualizar_maquinaria/{id}', [MaquinariasController::class, 'update'])->name('actualizar_maquinaria')->middleware('auth');
+Route::put('actualizar_maquinaria_disponible/{id}', [MaquinariasController::class, 'update_disponible'])->name('actualizar_maquinaria_disponible')->middleware('auth');
+
+//Herramientas
+Route::get('herramientas',[HerramientasController::class, 'index'])->name('herramientas')->middleware('auth');
+Route::get('crear_herramienta', [HerramientasController::class, 'create'])->name('crear_herramienta')->middleware('auth');
+Route::post('guardar_herramienta', [HerramientasController::class, 'store'])->name('guardar_herramienta')->middleware('auth');
+Route::get('editar_herramienta/{id}', [HerramientasController::class, 'edit'])->name('editar_herramienta')->middleware('auth');
+Route::put('actualizar_herramienta/{id}', [HerramientasController::class, 'update'])->name('actualizar_herramienta')->middleware('auth');
+
+//Conductores
+Route::get('conductores',[ConductoresController::class, 'index'])->name('conductores')->middleware('auth');
+Route::get('crear_conductor', [ConductoresController::class, 'create'])->name('crear_conductor')->middleware('auth');
+Route::post('guardar_conductor', [ConductoresController::class, 'store'])->name('guardar_conductor')->middleware('auth');
+Route::get('editar_conductor/{id}', [ConductoresController::class, 'edit'])->name('editar_conductor')->middleware('auth');
+Route::put('actualizar_conductor/{id}', [ConductoresController::class, 'update'])->name('actualizar_conductor')->middleware('auth');
+
+//Conductores
+Route::get('boletas',[BoletasController::class, 'index'])->name('boletas')->middleware('auth');
+Route::get('crear_boleta', [BoletasController::class, 'create'])->name('crear_boleta')->middleware('auth');
+Route::post('guardar_boleta', [BoletasController::class, 'store'])->name('guardar_boleta')->middleware('auth');
+Route::get('editar_boleta/{id}', [BoletasController::class, 'edit'])->name('editar_boleta')->middleware('auth');
+Route::put('actualizar_boleta/{id}', [BoletasController::class, 'update'])->name('actualizar_boleta')->middleware('auth');

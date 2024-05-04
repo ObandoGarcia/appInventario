@@ -5,42 +5,35 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Maquinaria extends Model
+class Herramientas extends Model
 {
     use HasFactory;
 
-    protected $table = 'maquinarias';
+    protected $table = 'herramientas';
 
-    //Relaciones entre las tablas
-    //Relacion entre maquinarias y marcas
+    //Relaciones
+    //Relacion entre herramientas y marcas
     public function marcas():BelongsTo
     {
         return $this->belongsTo(Marca::class, 'marca_id')->withDefault();
     }
 
-    //Relacion entre maquinaria y estado
+    //Relacion entre herramientas y estados
     public function estados():BelongsTo
     {
         return $this->belongsTo(Estado::class, 'estado_id')->withDefault();
     }
 
-    //Relacines entre maquinarias y proveedores
+    ///Relacion entre herramientas y proveedores
     public function proveedores():BelongsTo
     {
         return $this->belongsTo(Proveedor::class, 'proveedor_id')->withDefault();
     }
 
-    //Relaciones entre maquinarias y estados
+    //Relacion entre herramientas y usuarios
     public function usuarios():BelongsTo
     {
         return $this->belongsTo(User::class, 'usuario_id')->withDefault();
-    }
-
-    //Relacione entre maquinaria y boletas
-    public function boletas():HasMany
-    {
-        return $this->hasMnay(Boleto::class);
     }
 }

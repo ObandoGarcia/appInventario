@@ -45,6 +45,19 @@
             </a>
         </li>
         <li class="sidebar-item">
+            <a href="{{ route('herramientas') }}" class="sidebar-link">
+                <i class="bi bi-tools"></i>
+                <span>Herramientas</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
+            <a href="{{ route('conductores') }}" class="sidebar-link">
+                <i class="bi bi-truck"></i>
+                <span>Conductores</span>
+            </a>
+        </li>
+
+        <li class="sidebar-item">
             <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
                 data-bs-target="#auth" aria-expanded="false" aria-controls="auth">
                 <i class="lni lni-protection"></i>

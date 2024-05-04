@@ -31,4 +31,10 @@ class Marca extends Model
     {
         return $this->hasMany(Maquinaria::class);
     }
+
+    //Relacion entre marca y herramientas
+    public function herramientas():HasMany
+    {
+        return $this->hasMany(Herramientas::class);
+    }
 }
