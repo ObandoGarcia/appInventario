@@ -21,6 +21,10 @@
                             <td>{{ $material->cantidad }}</td>
                         </tr>
                         <tr>
+                            <td>Medida</td>
+                            <td>{{ $material->medida }}</td>
+                        </tr>
+                        <tr>
                             <td>Descripcion</td>
                             <td>{{ $material->descripcion }}</td>
                         </tr>

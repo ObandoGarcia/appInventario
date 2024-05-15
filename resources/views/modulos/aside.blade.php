@@ -56,21 +56,18 @@
                 <span>Conductores</span>
             </a>
         </li>
+        <li class="sidebar-item">
+            <a href="{{ route('boletas') }}" class="sidebar-link">
+                <i class="bi bi-ticket-perforated-fill"></i>
+                <span>Boletas de combustible</span>
+            </a>
+        </li>
 
         <li class="sidebar-item">
-            <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
-                data-bs-target="#auth" aria-expanded="false" aria-controls="auth">
-                <i class="lni lni-protection"></i>
-                <span>Auth</span>
+            <a href="{{ route('usuarios') }}" class="sidebar-link">
+                <i class="bi bi-person-vcard-fill"></i>
+                <span>Usuarios</span>
             </a>
-            <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">Login</a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">Register</a>
-                </li>
-            </ul>
         </li>
     </ul>
     <div class="sidebar-footer">

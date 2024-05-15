@@ -196,7 +196,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         Mckenziearts\Notify\LaravelNotifyServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
-        
+        Barryvdh\DomPDF\ServiceProvider::class,
+
     ],
 
     /*

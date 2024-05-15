@@ -16,6 +16,8 @@
         @include('modulos.aside')
         <div class="main p-3">
             <div class="container-fluid">
+                <p>Has iniciado sesion como: <strong>{{ auth()->user()->name }}</strong></p>
+                <hr>
                 @yield('contenido-dinamico')
             </div>
         </div>

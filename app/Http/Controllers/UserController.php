@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -19,7 +21,7 @@ class UserController extends Controller
         if(Auth::attempt($credenciales))
         {
             request()->session()->regenerateToken();
-            notify()->success('Has iniciado sesion correctamente', 'Informacion');
+            //notify()->success('Has iniciado sesion correctamente', 'Informacion');
             return redirect('paneles');
         }
 
@@ -31,8 +33,15 @@ class UserController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         request()->session()->regenerateToken();
-        notify()->success('Has cerrado sesion', 'Informacion');
+        //notify()->success('Has cerrado sesion', 'Informacion');
 
         return redirect()->route('bienvenido');
+    }
+
+    public function index()
+    {
+        $usuarios = User::paginate(10);
+
+        return view('user.usuarios', compact('usuarios'));
     }
 }

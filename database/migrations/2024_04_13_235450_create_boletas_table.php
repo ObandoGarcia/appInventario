@@ -26,7 +26,7 @@ return new class extends Migration
                 ->constrained('maquinarias')
                 ->cascadeOnUpdate()
                 ->nullOnDelete();
-            $table->integer('cantidad');
+            $table->decimal('cantidad');
             $table->text('descripcion')
                 ->nullable();
             $table->string('recibido_por');

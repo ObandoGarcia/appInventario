@@ -12,7 +12,8 @@ return new class extends Migration
             $table->id();
             $table->string('nombre');
             $table->integer('cantidad');
-            $table->integer('disponible');
+            $table->string('medida')
+                ->nullable();
             $table->text('descripcion')
                 ->nullable();
             $table->dateTime('fecha_de_ingreso');

@@ -12,7 +12,7 @@ class MaquinariasController extends Controller
 {
     public function index()
     {
-        $maquinarias = Maquinaria::orderBy('id', 'asc')->paginate(10);
+        $maquinarias = Maquinaria::orderBy('id', 'desc')->paginate(10);
 
         return view('maquinaria.maquinarias', compact('maquinarias'));
     }
@@ -55,7 +55,7 @@ class MaquinariasController extends Controller
         $maquinaria->proveedor_id = $request->proveedor;
         $maquinaria->usuario_id = auth()->user()->id;
         $maquinaria->save();
-        notify()->success('Registro creado correctamente', 'Informacion');
+        //notify()->success('Registro creado correctamente', 'Informacion');
 
         return redirect()->route('maquinarias');
     }
@@ -105,7 +105,7 @@ class MaquinariasController extends Controller
         $maquinaria->proveedor_id = $request->proveedor;
         $maquinaria->usuario_id = auth()->user()->id;
         $maquinaria->update();
-        notify()->success('Registro actualizado correctamente', 'Informacion');
+        //notify()->success('Registro actualizado correctamente', 'Informacion');
 
         return redirect()->route('maquinarias');
 
@@ -129,7 +129,7 @@ class MaquinariasController extends Controller
         }
 
         $maquinaria->update();
-        notify()->success('Registro actualizado correctamente', 'Informacion');
+        //notify()->success('Registro actualizado correctamente', 'Informacion');
 
         return redirect()->route('maquinarias');
     }

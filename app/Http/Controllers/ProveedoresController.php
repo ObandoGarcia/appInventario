@@ -10,7 +10,7 @@ class ProveedoresController extends Controller
 {
     public function index()
     {
-        $proveedores = Proveedor::orderBy('id', 'asc')->paginate(10);
+        $proveedores = Proveedor::orderBy('id', 'desc')->paginate(10);
 
         return view('proveedor.proveedor', compact('proveedores'));
     }
@@ -34,8 +34,7 @@ class ProveedoresController extends Controller
         $proveedor->email = $request->email;
         $proveedor->usuario_id = auth()->user()->id;
         $proveedor->save();
-
-        notify()->success('Registro creado correctamente', 'Informacion');
+        //notify()->success('Registro creado correctamente', 'Informacion');
 
         return redirect()->route('proveedores');
     }
@@ -61,8 +60,7 @@ class ProveedoresController extends Controller
         $proveedor->email = $request->email;
         $proveedor->usuario_id = auth()->user()->id;
         $proveedor->update();
-
-        notify()->success('Registro actualizado correctamente', 'Informacion');
+        //notify()->success('Registro actualizado correctamente', 'Informacion');
 
         return redirect()->route('proveedores');
 
@@ -72,8 +70,7 @@ class ProveedoresController extends Controller
     {
         $proveedor = Proveedor::find($id);
         $proveedor->delete();
-
-        notify()->success('Registro eliminado correctamente', 'Informacion');
+        //notify()->success('Registro eliminado correctamente', 'Informacion');
 
         return redirect()->route('proveedores');
     }

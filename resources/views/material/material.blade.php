@@ -12,6 +12,7 @@
                     <tr>
                         <th>Nombre</th>
                         <th>Cantidad</th>
+                        <th>Medida</th>
                         <th>Fecha de ingreso</th>
                         <th>Creado/Modificado por</th>
                         <th>Acciones</th>
@@ -22,6 +23,7 @@
                         <tr>
                             <td>{{ $itemMaterial->nombre }}</td>
                             <td>{{ $itemMaterial->cantidad }}</td>
+                            <td>{{ $itemMaterial->medida }}</td>
                             <td>{{ $itemMaterial->fecha_de_ingreso }}</td>
                             <td>{{ $itemMaterial->usuario->name }}</td>
                             <td>

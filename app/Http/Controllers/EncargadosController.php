@@ -11,7 +11,7 @@ class EncargadosController extends Controller
 {
     public function index()
     {
-        $encargados = Encargado::orderBy('id', 'asc')->paginate(10);
+        $encargados = Encargado::orderBy('id', 'desc')->paginate(10);
 
         return view('encargados.encargados', compact('encargados'));
     }
@@ -40,7 +40,7 @@ class EncargadosController extends Controller
         $encargado->estado_id = $request->estado;
         $encargado->usuario_id = auth()->user()->id;
         $encargado->save();
-        notify()->success('Registro creado correctamente', 'Informacion');
+        //notify()->success('Registro creado correctamente', 'Informacion');
 
         return redirect()->route('encargados');
     }
@@ -70,7 +70,7 @@ class EncargadosController extends Controller
         $encargado->estado_id = $request->estado;
         $encargado->usuario_id = auth()->user()->id;
         $encargado->update();
-        notify()->success('Registro actualizado correctamente', 'Informacion');
+        //notify()->success('Registro actualizado correctamente', 'Informacion');
 
         return redirect()->route('encargados');
 
@@ -80,7 +80,7 @@ class EncargadosController extends Controller
     {
         $encargado = Encargado::find($id);
         $encargado->delete();
-        notify()->success('Registro eliminado correctamente', 'Informacion');
+        //notify()->success('Registro eliminado correctamente', 'Informacion');
 
         return redirect()->route('encargados');
 

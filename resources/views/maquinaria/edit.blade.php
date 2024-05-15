@@ -4,7 +4,7 @@
     <div>
         <h1>Editar una maquinaria</h1>
         <div class="row">
-            <div class=" col-6">
+            <div class="col-12 col-xl-6 col-xxl-6">
                 <form action="{{ route('actualizar_maquinaria', $maquinaria->id) }}" method="POST">
                     @csrf
                     @method('PUT')
@@ -71,7 +71,7 @@
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
-                    
+
                     <div class="mb-3">
                         <label class="form-label" for="marca">Marca</label>
                         <select name="marca" class="form-select">

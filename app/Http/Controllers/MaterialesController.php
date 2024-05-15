@@ -12,7 +12,7 @@ class MaterialesController extends Controller
 {
     public function index()
     {
-        $materiales = Material::orderBy('id', 'asc')->paginate(10);
+        $materiales = Material::orderBy('id', 'desc')->paginate(10);
 
         return view('material.material',compact('materiales'));
     }
@@ -48,6 +48,7 @@ class MaterialesController extends Controller
         $material = new Material();
         $material->nombre = $request->nombre;
         $material->cantidad = $request->cantidad;
+        $material->medida = $request->medida;
         $material->descripcion = $request->descripcion;
         $material->fecha_de_ingreso = $request->fecha_de_ingreso;
         $material->precio_por_unidad = $request->precio_por_unidad;
@@ -56,7 +57,7 @@ class MaterialesController extends Controller
         $material->proveedor_id = $request->proveedor;
         $material->usuario_id = auth()->user()->id;
         $material->save();
-        notify()->success('Registro creado correctamente', 'Informacion');
+        //notify()->success('Registro creado correctamente', 'Informacion');
 
         return redirect()->route('materiales');
     }
@@ -86,6 +87,7 @@ class MaterialesController extends Controller
         $material = Material::find($id);
         $material->nombre = $request->nombre;
         $material->cantidad = $request->cantidad;
+        $material->medida = $request->medida;
         $material->descripcion = $request->descripcion;
         $material->fecha_de_ingreso = $request->fecha_de_ingreso;
         $material->precio_por_unidad = $request->precio_por_unidad;
@@ -94,7 +96,7 @@ class MaterialesController extends Controller
         $material->proveedor_id = $request->proveedor;
         $material->usuario_id = auth()->user()->id;
         $material->update();
-        notify()->success('Registro actualizado correctamente', 'Informacion');
+        //notify()->success('Registro actualizado correctamente', 'Informacion');
 
         return redirect()->route('materiales');
     }

@@ -10,7 +10,7 @@ class ConductoresController extends Controller
 {
     public function index()
     {
-        $conductores = Conductor::orderBy('id', 'asc')->paginate(10);
+        $conductores = Conductor::orderBy('id', 'desc')->paginate(10);
 
         return view('conductor.conductores', compact('conductores'));
     }
@@ -41,7 +41,7 @@ class ConductoresController extends Controller
         $conductor->estado_id = $request->estado;
         $conductor->usuario_id = auth()->user()->id;
         $conductor->save();
-        notify()->success('Registro creado correctamente', 'Informacion');
+        //notify()->success('Registro creado correctamente', 'Informacion');
 
         return redirect()->route('conductores');
     }

@@ -4,7 +4,7 @@
     <div>
         <h1>Editar un material</h1>
         <div class="row">
-            <div class="col-6">
+            <div class="col-12 col-xl-6 col-xxl-6">
                 <form action="{{ route('actualizar_material', $material->id) }}" method="POST">
                     @csrf
                     @method('PUT')
@@ -25,6 +25,35 @@
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="medida">Unidad de medida</label>
+                        <select name="medida" class="form-select">
+                            <option value="{{ $material->medida }}" selected>{{ $material->medida }}</option>
+                            <option value="general">Medida general sin especificar</option>
+                            <option value="" disabled>--------------------------Peso--------------------------</option>
+                            <option value="kilogramo">Kilogramo</option>
+                            <option value="libra">Libra</option>
+                            <option value="" disabled>------------------------Longitud------------------------</option>
+                            <option value="metros">Metros</option>
+                            <option value="pulgadas">Pulgadas</option>
+                            <option value="yardas">Yardas</option>
+                            <option value="pies">Pies</option>
+                            <option value="" disabled>------------------------Volumen------------------------</option>
+                            <option value="litros">Litros</option>
+                            <option value="galones">Galones</option>
+                            <option value="cuarto de galon">Cuarto de galon</option>
+                            <option value="metros cubicos">Metros Cubicos</option>
+                            <option value="pies cubicos">Pies Cubicos</option>
+                            <option value="" disabled>---------------------Otras medidas----------------------</option>
+                            <option value="bolsas">Bolsas</option>
+                            <option value="sacos">Sacos</option>
+                            <option value="cajas">Cajas</option>
+                            <option value="Barril">Barriles</option>
+                            <option value="rollo">Rollos</option>
+                        </select>
+                    </div>
+
 
                     <div class="">
                         <label class="form-label" for="descripcion">Descripcion</label>

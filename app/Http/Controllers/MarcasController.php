@@ -9,7 +9,7 @@ class MarcasController extends Controller
 {
     public function index()
     {
-        $marcas = Marca::orderBy('id', 'asc')->paginate(10);
+        $marcas = Marca::orderBy('id', 'desc')->paginate(10);
 
         return view('marca.marca', compact('marcas'));
     }
@@ -29,7 +29,7 @@ class MarcasController extends Controller
         $marca->nombre = $request->nombre;
         $marca->usuario_id = auth()->user()->id;
         $marca->save();
-        notify()->success('Registro creado correctamente', 'Informacion');
+        //notify()->success('Registro creado correctamente', 'Informacion');
 
         return redirect()->route('marcas');
     }
@@ -52,7 +52,7 @@ class MarcasController extends Controller
         $marca->usuario_id = auth()->user()->id;
         $marca->update();
 
-        notify()->success('Registro actualizado correctamente', 'Informacion');
+        //notify()->success('Registro actualizado correctamente', 'Informacion');
 
         return redirect()->route('marcas');
     }
@@ -62,7 +62,7 @@ class MarcasController extends Controller
         $marca = Marca::find($id);
         $marca->delete();
 
-        notify()->success('Registro eliminado correctamente', 'Informacion');
+        //notify()->success('Registro eliminado correctamente', 'Informacion');
 
         return redirect()->route('marcas');
     }

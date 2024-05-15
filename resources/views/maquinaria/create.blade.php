@@ -4,7 +4,7 @@
     <div>
         <h1>Registrar una nueva maquinaria</h1>
         <div class="row">
-            <div class=" col-6">
+            <div class="col-12 col-xl-6 col-xxl-6">
                 <form action="{{ route('guardar_maquinaria') }}" method="POST">
                     @csrf
 

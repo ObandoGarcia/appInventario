@@ -21,6 +21,9 @@ Route::get('paneles', [PanelController::class, 'index'])->name('paneles')->middl
 Route::post('iniciar_sesion', [UserController::class, 'iniciar_sesion'])->name('iniciar_sesion');
 Route::get('cerrar_sesion', [UserController::class, 'cerrar_sesion'])->name('cerrar_sesion');
 
+//User
+Route::get('usuarios', [UserController::class, 'index'])->name('usuarios')->middleware('auth');
+
 //Marcas
 Route::get('marcas',[MarcasController::class, 'index'])->name('marcas')->middleware('auth');
 Route::get('crear_marca', [MarcasController::class, 'create'])->name('crear_marca')->middleware('auth');
@@ -83,9 +86,13 @@ Route::post('guardar_conductor', [ConductoresController::class, 'store'])->name(
 Route::get('editar_conductor/{id}', [ConductoresController::class, 'edit'])->name('editar_conductor')->middleware('auth');
 Route::put('actualizar_conductor/{id}', [ConductoresController::class, 'update'])->name('actualizar_conductor')->middleware('auth');
 
-//Conductores
+//Boletas
 Route::get('boletas',[BoletasController::class, 'index'])->name('boletas')->middleware('auth');
+Route::get('ver_boleta/{id}', [BoletasController::class, 'show'])->name('ver_boleta')->middleware('auth');
 Route::get('crear_boleta', [BoletasController::class, 'create'])->name('crear_boleta')->middleware('auth');
 Route::post('guardar_boleta', [BoletasController::class, 'store'])->name('guardar_boleta')->middleware('auth');
 Route::get('editar_boleta/{id}', [BoletasController::class, 'edit'])->name('editar_boleta')->middleware('auth');
 Route::put('actualizar_boleta/{id}', [BoletasController::class, 'update'])->name('actualizar_boleta')->middleware('auth');
+Route::get('reporte_combustible/{id}', [BoletasController::class, 'create_pdf'])->name('reporte_combustible')->middleware('auth');
+
+

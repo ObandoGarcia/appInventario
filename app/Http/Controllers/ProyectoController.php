@@ -11,7 +11,7 @@ class ProyectoController extends Controller
 {
     public function index()
     {
-        $proyectos = Proyecto::orderBy('id', 'asc')->paginate(10);
+        $proyectos = Proyecto::orderBy('id', 'desc')->paginate(10);
 
         return view('proyecto.proyectos', compact('proyectos'));
     }
@@ -47,7 +47,7 @@ class ProyectoController extends Controller
         $proyecto->estado_id = $request->estado;
         $proyecto->usuario_id = auth()->user()->id;
         $proyecto->save();
-        notify()->success('Registro creado correctamente', 'Informacion');
+        //notify()->success('Registro creado correctamente', 'Informacion');
 
         return redirect()->route('proyectos');
     }
@@ -83,7 +83,7 @@ class ProyectoController extends Controller
         $proyecto->estado_id = $request->estado;
         $proyecto->usuario_id = auth()->user()->id;
         $proyecto->update();
-        notify()->success('Registro actualizado correctamente', 'Informacion');
+        //notify()->success('Registro actualizado correctamente', 'Informacion');
 
         return redirect()->route('proyectos');
     }

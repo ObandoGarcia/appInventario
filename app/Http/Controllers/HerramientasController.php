@@ -12,7 +12,7 @@ class HerramientasController extends Controller
 {
     public function index()
     {
-        $herramientas = Herramientas::orderBy('id', 'asc')->paginate(10);
+        $herramientas = Herramientas::orderBy('id', 'desc')->paginate(10);
 
         return view('herramienta.herramientas', compact('herramientas'));
     }
@@ -45,7 +45,7 @@ class HerramientasController extends Controller
         $herramienta->estado_id = $request->estado;
         $herramienta->usuario_id = auth()->user()->id;
         $herramienta->save();
-        notify()->success('Registro creado correctamente', 'Informacion');
+        //notify()->success('Registro creado correctamente', 'Informacion');
 
         return redirect()->route('herramientas');
     }
@@ -80,7 +80,7 @@ class HerramientasController extends Controller
         $herramienta->estado_id = $request->estado;
         $herramienta->usuario_id = auth()->user()->id;
         $herramienta->update();
-        notify()->success('Registro actualizado correctamente', 'Informacion');
+        //notify()->success('Registro actualizado correctamente', 'Informacion');
 
         return redirect()->route('herramientas');
     }
