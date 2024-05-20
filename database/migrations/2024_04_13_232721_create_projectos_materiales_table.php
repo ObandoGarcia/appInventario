@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('cantidad');
             $table->integer('cantidad_devuelta')
                 ->nullable();
+            $table->decimal('valor_total',total:8, places:2, unsigned:false);
             $table->boolean('procesado')
                 ->nullable();
             $table->foreignId('material_id')

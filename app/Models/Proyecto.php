@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Proyecto extends Model
@@ -36,5 +37,11 @@ class Proyecto extends Model
     public function boletas():HasMany
     {
         return $this->hasMany(Boleto::class);
+    }
+
+    //Relacion entre proyectos y materiales
+    public function proyectos_materiales():HasMany
+    {
+        return $this->hasMany(ProyectosMateriales::class);
     }
 }

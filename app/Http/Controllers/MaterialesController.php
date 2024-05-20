@@ -42,7 +42,7 @@ class MaterialesController extends Controller
             'cantidad' => ['required', 'numeric', 'min:0'],
             'descripcion' => ['nullable', 'string'],
             'fecha_de_ingreso' => ['required', 'date'],
-            'precio_por_unidad' => ['required', 'decimal:2', 'min:0']
+            'precio_por_unidad' => ['required', 'min:0']
         ]);
 
         $material = new Material();
@@ -52,6 +52,7 @@ class MaterialesController extends Controller
         $material->descripcion = $request->descripcion;
         $material->fecha_de_ingreso = $request->fecha_de_ingreso;
         $material->precio_por_unidad = $request->precio_por_unidad;
+        $material->valor_total = $request->cantidad * $request->precio_por_unidad;
         $material->marca_id = $request->marca;
         $material->estado_id = $request->estado;
         $material->proveedor_id = $request->proveedor;
@@ -81,7 +82,7 @@ class MaterialesController extends Controller
             'cantidad' => ['required', 'numeric', 'min:0'],
             'descripcion' => ['nullable', 'string'],
             'fecha_de_ingreso' => ['required', 'date'],
-            'precio_por_unidad' => ['required', 'decimal:2', 'min:0']
+            'precio_por_unidad' => ['required', 'min:0']
         ]);
 
         $material = Material::find($id);
@@ -91,6 +92,7 @@ class MaterialesController extends Controller
         $material->descripcion = $request->descripcion;
         $material->fecha_de_ingreso = $request->fecha_de_ingreso;
         $material->precio_por_unidad = $request->precio_por_unidad;
+        $material->valor_total = $request->cantidad * $request->precio_por_unidad;
         $material->marca_id = $request->marca;
         $material->estado_id = $request->estado;
         $material->proveedor_id = $request->proveedor;

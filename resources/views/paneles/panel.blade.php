@@ -8,8 +8,7 @@
                 <div class="card border-success mb-3">
                     <div class="card-header">Usuarios</div>
                     <div class="card-body">
-                      <h5 class="card-title">Usuarios registrados</h5>
-                      <p class="text-end">{{ $usuarios }}</p>
+                      <p><strong>Usuarios registrados: </strong>  {{ $usuarios }}</p>
                     </div>
                   </div>
             </div>
@@ -17,8 +16,7 @@
                 <div class="card border-success mb-3">
                     <div class="card-header">Proyectos</div>
                     <div class="card-body">
-                      <h5 class="card-title">Proyecto activos</h5>
-                      <p class="text-end">{{ $proyectos }}</p>
+                        <p><strong>Proyectos: </strong>  {{ $proyectos }}</p>
                     </div>
                   </div>
             </div>
@@ -26,8 +24,7 @@
                 <div class="card border-success mb-3">
                     <div class="card-header">Marcas</div>
                     <div class="card-body">
-                      <h5 class="card-title">Marcas registradas</h5>
-                      <p class="text-end">{{ $marcas }}</p>
+                        <p><strong>Marcas registradas: </strong>  {{ $marcas }}</p>
                     </div>
                   </div>
             </div>
@@ -35,8 +32,7 @@
                 <div class="card border-success mb-3">
                     <div class="card-header">Proveedores</div>
                     <div class="card-body">
-                      <h5 class="card-title">Proveedores registrados</h5>
-                      <p class="text-end"></p>
+                        <p><strong>Proveedores registrados: </strong> {{ $proveedores }}</p>
                     </div>
                   </div>
             </div>
@@ -44,8 +40,8 @@
                 <div class="card border-success mb-3">
                     <div class="card-header">Materiales de construccion</div>
                     <div class="card-body">
-                      <h5 class="card-title">Materiales registrados</h5>
-                      <p class="text-end"></p>
+                      <p><strong>Materiales registrados: </strong>  {{ $materiales_totales }}</p>
+                      <p><strong>Valor total de materiales: </strong>$ {{ $valor_materiales }} </p>
                     </div>
                   </div>
             </div>
@@ -53,8 +49,7 @@
                 <div class="card border-success mb-3">
                     <div class="card-header">Maquinarias</div>
                     <div class="card-body">
-                      <h5 class="card-title">Maquinarias registradas</h5>
-                      <p class="text-end"></p>
+                        <p><strong>Maquinarias: </strong>  {{ $maquinarias }}</p>
                     </div>
                   </div>
             </div>
@@ -62,8 +57,7 @@
                 <div class="card border-success mb-3">
                     <div class="card-header">Herramientas</div>
                     <div class="card-body">
-                      <h5 class="card-title">Total de herramientas</h5>
-                      <p class="text-end"></p>
+                        <p><strong>Total de herramientas: </strong>  {{ $herramientas }}</p>
                     </div>
                   </div>
             </div>
@@ -71,8 +65,7 @@
                 <div class="card border-success mb-3">
                     <div class="card-header">Conductores</div>
                     <div class="card-body">
-                      <h5 class="card-title">Conductores registrados</h5>
-                      <p class="text-end"></p>
+                        <p><strong>Conductores: </strong>  {{ $conductores }}</p>
                     </div>
                   </div>
             </div>
@@ -80,8 +73,7 @@
                 <div class="card border-success mb-3">
                     <div class="card-header">Boletas de gas</div>
                     <div class="card-body">
-                      <h5 class="card-title">Total de boletas creadas</h5>
-                      <p class="text-end"></p>
+                        <p><strong>Vales de combustible: </strong>  {{ $boletos }}</p>
                     </div>
                   </div>
             </div>

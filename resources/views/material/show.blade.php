@@ -38,7 +38,7 @@
                         </tr>
                         <tr>
                             <td>Costo total</td>
-                            <td>$ {{ $material->precio_por_unidad * $material->cantidad }}</td>
+                            <td>$ {{ $material->valor_total}}</td>
                         </tr>
                         <tr>
                             <td>Marca</td>

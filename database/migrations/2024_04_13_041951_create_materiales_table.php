@@ -18,6 +18,7 @@ return new class extends Migration
                 ->nullable();
             $table->dateTime('fecha_de_ingreso');
             $table->decimal('precio_por_unidad', total: 8, places: 2, unsigned:false);
+            $table->decimal('valor_total', total:8, places:2, unsigned:false);
             $table->foreignId('marca_id')
                 ->nullable()
                 ->constrained('marcas')

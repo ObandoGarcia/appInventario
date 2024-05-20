@@ -62,6 +62,10 @@ Route::get('crear_proyecto', [ProyectoController::class, 'create'])->name('crear
 Route::post('guardar_proyecto', [ProyectoController::class, 'store'])->name('guardar_proyecto')->middleware('auth');
 Route::get('editar_proyecto/{id}', [ProyectoController::class, 'edit'])->name('editar_proyecto')->middleware('auth');
 Route::put('actualizar_proyecto/{id}', [ProyectoController::class, 'update'])->name('actualizar_proyecto')->middleware('auth');
+Route::get('detalle_proyecto/{id}', [ProyectoController::class, 'detail'])->name('detalle_proyecto')->middleware('auth');
+Route::get('agregar_detalle_material/{proyectoId}', [ProyectoController::class, 'create_material_detail'])->name('agregar_detalle_material')->middleware('auth');
+Route::post('validar_cantidad_material/{proyectoId}', [ProyectoController::class, 'validar_cantidad_material'])->name('validar_cantidad_materiales')->middleware('auth');
+Route::put('guardar_detalle_material/proyecto/{proyectoId}/material/{materialId}', [ProyectoController::class, 'store_material_detail'])->name('guardar_detalle_material')->middleware('auth');
 
 //Maquinarias
 Route::get('maquinarias',[MaquinariasController::class, 'index'])->name('maquinarias')->middleware('auth');
@@ -94,5 +98,3 @@ Route::post('guardar_boleta', [BoletasController::class, 'store'])->name('guarda
 Route::get('editar_boleta/{id}', [BoletasController::class, 'edit'])->name('editar_boleta')->middleware('auth');
 Route::put('actualizar_boleta/{id}', [BoletasController::class, 'update'])->name('actualizar_boleta')->middleware('auth');
 Route::get('reporte_combustible/{id}', [BoletasController::class, 'create_pdf'])->name('reporte_combustible')->middleware('auth');
-
-

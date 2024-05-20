@@ -63,17 +63,40 @@ class BoletasController extends Controller
 
     public function edit($id)
     {
+        $boleto = Boleto::find($id);
 
+        $conductores = Conductor::all();
+        $proyectos = Proyecto::all();
+        $maquinarias = Maquinaria::all();
+
+        return view('boletas.edit', compact('boleto', 'conductores', 'proyectos', 'maquinarias'));
     }
 
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'fecha' => ['required', 'date'],
+            'cantidad' => ['required', 'min:0'],
+            'descripcion' => ['required', 'string'],
+            'entregado' => ['required', 'string', 'min:5'],
+            'recibido' => ['required', 'string', 'min:5']
+        ]);
 
-    }
+        $boleto = Boleto::find($id);
+        $boleto->conductor_id = $request->conductor;
+        $boleto->fecha = $request->fecha;
+        $boleto->proyecto_id = $request->proyecto;
+        $boleto->maquinaria_id = $request->maquinaria;
+        $boleto->cantidad = $request->cantidad;
+        $boleto->descripcion = $request->descripcion;
+        $boleto->recibido_por = $request->recibido;
+        $boleto->entregado_por= $request->entregado;
+        $boleto->numero_de_impresiones += $boleto->numero_de_impresiones;
+        $boleto->usuario_id = auth()->user()->id;
+        $boleto->update();
+        //notify()->success('Registro creado correctamente', 'Informacion');
 
-    public function destroy($id)
-    {
-
+        return redirect()->route('boletas');
     }
 
     public function create_pdf($id)

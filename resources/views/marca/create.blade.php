@@ -4,7 +4,7 @@
     <div>
         <h1>Registrar una nueva marca</h1>
         <div class="row">
-            <div class="col-12 col-xl-6 col-xxl-6">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-10">
                 <form action="{{ route('guardar_marca') }}" method="POST">
                     @csrf
 

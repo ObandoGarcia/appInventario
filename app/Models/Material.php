@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Material extends Model
 {
@@ -35,5 +37,11 @@ class Material extends Model
     public function proveedores():BelongsTo
     {
         return $this->belongsTo(Proveedor::class, 'proveedor_id')->withDefault();
+    }
+
+    //Relacion entre materiales y proyectos
+    public function proyectos_materiales():HasMany
+    {
+        return $this->hasMany(ProyectosMateriales::class);
     }
 }

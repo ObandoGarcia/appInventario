@@ -45,6 +45,9 @@
                                 <a href="{{ route('editar_proyecto', $itemProyecto->id) }}">
                                     <button class="btn btn-warning">Editar</button>
                                 </a>
+                                <a href="{{ route('detalle_proyecto', $itemProyecto->id) }}">
+                                    <button class="btn btn-info">Crear detalle</button>
+                                </a>
                             </td>
                         </tr>
                     @endforeach

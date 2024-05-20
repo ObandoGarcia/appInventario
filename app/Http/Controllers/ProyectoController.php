@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Proyecto;
 use App\Models\Encargado;
 use App\Models\Estado;
+use App\Models\ProyectosMateriales;
 use Illuminate\Http\Request;
+use App\Models\Material;
 
 class ProyectoController extends Controller
 {
@@ -87,4 +89,54 @@ class ProyectoController extends Controller
 
         return redirect()->route('proyectos');
     }
+
+    public function detail($id)
+    {
+        $proyecto = Proyecto::find($id);
+        $proyecto_material = ProyectosMateriales::where('proyecto_id', '=', $id)->get();
+
+        return view('proyecto.detail', compact('proyecto', 'proyecto_material'));
+    }
+
+    public function create_material_detail($proyectoId)
+    {
+        $proyecto = Proyecto::find($proyectoId);
+        $materiales = Material::all();
+
+        return view('proyecto.addDetailMaterial', compact('proyecto', 'materiales'));
+    }
+
+    public function validar_cantidad_material(Request $request, $proyectoId)
+    {
+        $proyecto = Proyecto::find($proyectoId);
+        $material = Material::find($request->material);
+
+        return view('proyecto.addDetailMaterialCantidad', compact('proyecto', 'material'));
+    }
+
+    public function store_material_detail(Request $request, $proyectoId, $materialId)
+    {
+        $request->validate([
+            'cantidad' => ['required', 'min:0']
+        ]);
+
+        $proyecto = Proyecto::find($proyectoId);
+        $material = Material::find($materialId);
+
+        //Crea el registro de proyecto materiales
+        $proyecto_material = new ProyectosMateriales();
+        $proyecto_material->proyecto_id = $proyecto->id;
+        $proyecto_material->cantidad = $request->cantidad;
+        $proyecto_material->valor_total = $material->precio_por_unidad * $request->cantidad;
+        $proyecto_material->material_id = $material->id;
+        $proyecto_material->save();
+
+
+        //Actualizar el registro material->cantidad
+        $material->cantidad -= $request->cantidad;
+        $material->update();
+
+        return redirect()->route('detalle_proyecto', ['id' => $proyecto->id]);
+    }
+
 }
