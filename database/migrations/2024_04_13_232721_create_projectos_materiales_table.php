@@ -16,8 +16,6 @@ return new class extends Migration
                 ->cascadeOnUpdate()
                 ->nullOnDelete();
             $table->integer('cantidad');
-            $table->integer('cantidad_devuelta')
-                ->nullable();
             $table->decimal('valor_total',total:8, places:2, unsigned:false);
             $table->boolean('procesado')
                 ->nullable();

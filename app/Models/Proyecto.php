@@ -44,4 +44,10 @@ class Proyecto extends Model
     {
         return $this->hasMany(ProyectosMateriales::class);
     }
+
+    //Relacion entre proyectos y maquinarias
+    public function proyectos_maquinarias():HasMany
+    {
+        return $this->hasMany(ProyectosMaquinarias::class);
+    }
 }

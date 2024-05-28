@@ -6,22 +6,22 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class ProyectosMateriales extends Model
+class ProyectosConductores extends Model
 {
     use HasFactory;
 
-    protected $table = 'projectos_materiales';
+    protected $table = 'proyectos_conductores';
 
     //Relaciones
-    //Relacion entre proyectos y materiales
+    //Relacion entre proyectos conductores y proyectos
     public function proyectos(): BelongsTo
     {
         return $this->belongsTo(Proyecto::class, 'proyecto_id')->withDefault();
     }
 
-    //Relacion entre materiales
-    public function materiales(): BelongsTo
+    //Relacion entre proyectos conductores y conductores
+    public function conductores(): BelongsTo
     {
-        return $this->belongsTo(Material::class, 'material_id')->withDefault();
+        return $this->belongsTo(Conductor::class, 'conductor_id')->withDefault();
     }
 }

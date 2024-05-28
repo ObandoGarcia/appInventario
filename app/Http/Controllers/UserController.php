@@ -22,7 +22,7 @@ class UserController extends Controller
         {
             request()->session()->regenerateToken();
             //notify()->success('Has iniciado sesion correctamente', 'Informacion');
-            return redirect('paneles');
+            return redirect('dashboard');
         }
 
         return view('login');

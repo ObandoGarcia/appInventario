@@ -4,7 +4,7 @@
             <i class="bi bi-list"></i>
         </button>
         <div class="sidebar-logo">
-            <a href="{{ route('paneles') }}">Mc Constructores</a>
+            <a href="#">Mc Constructores</a>
         </div>
     </div>
     <ul class="sidebar-nav">

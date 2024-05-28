@@ -17,6 +17,26 @@ class MaterialesController extends Controller
         return view('material.material',compact('materiales'));
     }
 
+    //Buscar por nombre
+    public function search_by_name(Request $request)
+    {
+        $busqueda = "";
+
+        if($request->buscar)
+        {
+            $busqueda = $request->buscar;
+            $materiales = Material::orwhere('nombre', 'like', $busqueda, '%')->paginate(5);
+
+            return view('material.material',compact('materiales'));
+        }else
+        {
+            $materiales = Material::orderBy('id', 'desc')->paginate(10);
+
+            return view('material.material',compact('materiales'));
+        }
+
+    }
+
     public function create()
     {
         $marcas = Marca::all();

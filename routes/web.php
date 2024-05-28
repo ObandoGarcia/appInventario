@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PanelController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MarcasController;
 use App\Http\Controllers\ProveedoresController;
@@ -16,7 +15,6 @@ use App\Http\Controllers\BoletasController;
 Route::view('/', 'welcome')->name('bienvenido');
 Route::view('login', 'login')->name('login')->middleware('guest');
 Route::view('dashboard', 'dashboard')->name('dashboard')->middleware('auth');
-Route::get('paneles', [PanelController::class, 'index'])->name('paneles')->middleware('auth');
 
 Route::post('iniciar_sesion', [UserController::class, 'iniciar_sesion'])->name('iniciar_sesion');
 Route::get('cerrar_sesion', [UserController::class, 'cerrar_sesion'])->name('cerrar_sesion');
@@ -47,6 +45,7 @@ Route::get('crear_material', [MaterialesController::class, 'create'])->name('cre
 Route::post('guardar_material', [MaterialesController::class, 'store'])->name('guardar_material')->middleware('auth');
 Route::get('editar_material/{id}', [MaterialesController::class, 'edit'])->name('editar_material')->middleware('auth');
 Route::put('actualizar_material/{id}', [MaterialesController::class, 'update'])->name('actualizar_material')->middleware('auth');
+Route::post('buscar_material', [MaterialesController::class, 'search_by_name'])->name('buscar_por_nombre')->middleware('auth');
 
 //Encargados
 Route::get('encargados',[EncargadosController::class, 'index'])->name('encargados')->middleware('auth');
@@ -62,19 +61,37 @@ Route::get('crear_proyecto', [ProyectoController::class, 'create'])->name('crear
 Route::post('guardar_proyecto', [ProyectoController::class, 'store'])->name('guardar_proyecto')->middleware('auth');
 Route::get('editar_proyecto/{id}', [ProyectoController::class, 'edit'])->name('editar_proyecto')->middleware('auth');
 Route::put('actualizar_proyecto/{id}', [ProyectoController::class, 'update'])->name('actualizar_proyecto')->middleware('auth');
+//Rutas de detalle de materiales del proyecto
 Route::get('detalle_proyecto/{id}', [ProyectoController::class, 'detail'])->name('detalle_proyecto')->middleware('auth');
 Route::get('agregar_detalle_material/{proyectoId}', [ProyectoController::class, 'create_material_detail'])->name('agregar_detalle_material')->middleware('auth');
 Route::post('validar_cantidad_material/{proyectoId}', [ProyectoController::class, 'validar_cantidad_material'])->name('validar_cantidad_materiales')->middleware('auth');
 Route::put('guardar_detalle_material/proyecto/{proyectoId}/material/{materialId}', [ProyectoController::class, 'store_material_detail'])->name('guardar_detalle_material')->middleware('auth');
+Route::put('guardar_material_por_proyecto/proyecto/{proyectoId}/material/{materialId}', [ProyectoController::class, 'store_material_by_proyect'])->name('guardar_detalle_por_proyecto')->middleware('auth');
+Route::put('quitar_material_por_proyecto/proyecto/{proyectoId}/material/{materialId}', [ProyectoController::class, 'subtract_material_by_project'])->name('quitar_detalle_por_proyecto')->middleware('auth');
+Route::put('eliminar_material_por_proyecto/proyecto/{proyectoId}/material/{materialId}', [ProyectoController::class, 'delete_material_by_project'])->name('eliminar_detalle_por_proyecto')->middleware('auth');
+//Rutas de maquinarias
+Route::post('guardar_maquinaria_por_proyecto/{proyectoId}', [ProyectoController::class, 'store_maquinaria_by_proyect'])->name('guardar_maquinaria_por_proyecto')->middleware('auth');
+Route::put('eliminar_maquinaria_proyecto/proyecto/{proyectoId}/proyectomaquinaria/{proyectomaquinariaId}', [ProyectoController::class, 'delete_maquinaria_by_proyect'])->name('eliminar_maquinaria_por_proyecto')->middleware('auth');
+Route::put('retornar_maquinaria/proyecto/{proyectoId}/maquinaria/{maquinariaId}', [ProyectoController::class, 'retornar_maquinaria_por_proyecto'])->name('retornar_maquinaria_por_proyecto')->middleware('auth');
+//Rutas de herramientas del proyecto
+Route::get('agregar_detalle_herramienta/{proyectoId}', [ProyectoController::class, 'create_herramientas_detail'])->name('agregar_detalle_herramientas')->middleware('auth');
+Route::post('validar_cantidad_herramienta/{proyectoId}', [ProyectoController::class, 'validar_cantidad_herramienta'])->name('validar_cantidad_maherramientas')->middleware('auth');
+Route::put('guardar_detalle_herramienta/proyecto/{proyectoId}/herramienta/{herramientaId}', [ProyectoController::class, 'store_herramienta_detail'])->name('guardar_detalle_herramientas')->middleware('auth');
+Route::put('guardar_herramienta_por_proyecto/proyecto/{proyectoId}/herramienta/{herramientaId}', [ProyectoController::class, 'store_herramienta_by_proyect'])->name('guardar_herramienta_por_proyecto')->middleware('auth');
+Route::put('quitar_herramienta_por_proyecto/proyecto/{proyectoId}/herramienta/{herramientaId}', [ProyectoController::class, 'subtract_herramienta_by_project'])->name('quitar_herramienta_por_proyecto')->middleware('auth');
+Route::put('eliminar_herramienta_por_proyecto/proyecto/{proyectoId}/herramienta/{herramientaId}', [ProyectoController::class, 'delete_herramienta_by_project'])->name('eliminar_herramienta_por_proyecto')->middleware('auth');
+Route::put('retornar_herraminetas_por_proyecto/proyecto/{proyectoId}/herramienta/{herramientaId}', [ProyectoController::class, 'retornar_herramienta_by_project'])->name('retornar_herramienta_por_proyecto')->middleware('auth');
+//Rutas de conductores del proyecto
+Route::post('guardar_conductor_por_proyecto/{proyectoId}', [ProyectoController::class, 'store_conductor_by_proyect'])->name('guardar_conductor_por_proyecto')->middleware('auth');
+Route::put('eliminar_conductor_proyecto/proyecto/{proyectoId}/proyectoconductor/{proyectoconductorId}', [ProyectoController::class, 'delete_conductor_by_proyect'])->name('eliminar_conductor_por_proyecto')->middleware('auth');
 
-//Maquinarias
+//Maqherramienta
 Route::get('maquinarias',[MaquinariasController::class, 'index'])->name('maquinarias')->middleware('auth');
 Route::get('ver_maquinaria/{id}', [MaquinariasController::class, 'show'])->name('ver_maquinaria')->middleware('auth');
 Route::get('crear_maquinaria', [MaquinariasController::class, 'create'])->name('crear_maquinaria')->middleware('auth');
 Route::post('guardar_maquinaria', [MaquinariasController::class, 'store'])->name('guardar_maquinaria')->middleware('auth');
 Route::get('editar_maquinaria/{id}', [MaquinariasController::class, 'edit'])->name('editar_maquinaria')->middleware('auth');
 Route::put('actualizar_maquinaria/{id}', [MaquinariasController::class, 'update'])->name('actualizar_maquinaria')->middleware('auth');
-Route::put('actualizar_maquinaria_disponible/{id}', [MaquinariasController::class, 'update_disponible'])->name('actualizar_maquinaria_disponible')->middleware('auth');
 
 //Herramientas
 Route::get('herramientas',[HerramientasController::class, 'index'])->name('herramientas')->middleware('auth');

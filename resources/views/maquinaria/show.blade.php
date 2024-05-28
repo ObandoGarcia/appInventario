@@ -42,7 +42,7 @@
                                 @if ($maquinaria->disponible)
                                     Esta disponible
                                 @else
-                                    No esta disponible
+                                    No esta disponible - esta en proyecto en ejecucion
                                 @endif
                             </td>
                         </tr>

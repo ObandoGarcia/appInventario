@@ -23,6 +23,7 @@ class MaquinariasController extends Controller
         $estados = Estado::where('nombre', '=', 'nuevo')
             ->orwhere('nombre', '=', 'usado')
             ->orwhere('nombre', '=', 'alquiler')
+            ->orwhere('nombre', '=', 'en proyecto')
             ->get();
         $proveedores = Proveedor::all();
 
@@ -73,6 +74,7 @@ class MaquinariasController extends Controller
         $estados = Estado::where('nombre', '=', 'nuevo')
             ->orwhere('nombre', '=', 'usado')
             ->orwhere('nombre', '=', 'alquiler')
+            ->orwhere('nombre', '=', 'en proyecto')
             ->get();
         $proveedores = Proveedor::all();
         $maquinaria = Maquinaria::find($id);
@@ -109,28 +111,5 @@ class MaquinariasController extends Controller
 
         return redirect()->route('maquinarias');
 
-    }
-
-    public function update_disponible(Request $request, $id)
-    {
-        $request->validate([
-            'disponible' => ['required']
-        ]);
-
-        $maquinaria = Maquinaria::find($id);
-
-        if($request->disponible == 1)
-        {
-            $maquinaria->disponible = true;
-        }
-        else if($request->disponible == 2)
-        {
-            $maquinaria->disponible = false;
-        }
-
-        $maquinaria->update();
-        //notify()->success('Registro actualizado correctamente', 'Informacion');
-
-        return redirect()->route('maquinarias');
     }
 }

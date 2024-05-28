@@ -3,7 +3,7 @@
 @section('contenido-dinamico')
     <div>
         <h1>Proyectos</h1>
-        <a href="{{ route('crear_proyecto') }}"><button class="btn btn-primary">Agregar encargado de proyecto</button></a>
+        <a href="{{ route('crear_proyecto') }}"><button class="btn btn-primary">Agregar proyecto</button></a>
         <br>
         <br>
         <div class="table-responsive">

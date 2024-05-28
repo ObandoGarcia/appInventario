@@ -43,4 +43,11 @@ class Maquinaria extends Model
     {
         return $this->hasMnay(Boleto::class);
     }
+
+    //Relacion entre proyectos y maquinarias
+    public function proyectos_maquinarias():HasMany
+    {
+        return $this->hasMany(ProyectosMaquinarias::class);
+    }
 }
+
