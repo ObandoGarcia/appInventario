@@ -19,7 +19,7 @@
             <p><strong>Fecha: </strong>{{ $fecha }}</p>
         </div>
         <div class="row">
-            <p><strong>Proyecto: </strong>{{ }}</p>
+            <p><strong>Proyecto: </strong>{{ $proyecto->nombre }}</p>
         </div>
         <div class="row">
             <table class="table table-bordered">

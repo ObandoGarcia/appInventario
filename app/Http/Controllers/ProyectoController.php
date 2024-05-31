@@ -382,13 +382,15 @@ class ProyectoController extends Controller
     //Crear pdf
     public function create_pdf($proyectoId)
     {
+
         $proyecto_material = ProyectosMateriales::where('proyecto_id', '=', $proyectoId)->get();
+        $proyecto = Proyecto::find($proyectoId);
         $precio_total_materiales = ProyectosMateriales::where('proyecto_id', '=', $proyectoId)->sum('valor_total');
 
         date_default_timezone_set("America/El_Salvador");
         $fecha = date("Y-m-d H:m:s");
 
-        $pdf = Pdf::loadView('proyecto.reporteMateriales', compact('proyecto_material', 'fecha', 'precio_total_materiales'));
+        $pdf = Pdf::loadView('proyecto.reporteMateriales', compact('proyecto_material', 'fecha', 'precio_total_materiales', 'proyecto'));
 
         return $pdf->stream();
     }

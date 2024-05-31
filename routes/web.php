@@ -85,7 +85,7 @@ Route::put('retornar_herraminetas_por_proyecto/proyecto/{proyectoId}/herramienta
 Route::post('guardar_conductor_por_proyecto/{proyectoId}', [ProyectoController::class, 'store_conductor_by_proyect'])->name('guardar_conductor_por_proyecto')->middleware('auth');
 Route::put('eliminar_conductor_proyecto/proyecto/{proyectoId}/proyectoconductor/{proyectoconductorId}', [ProyectoController::class, 'delete_conductor_by_proyect'])->name('eliminar_conductor_por_proyecto')->middleware('auth');
 //Reportes
-Route::get('reporte_combustible/{id}', [ProyectoController::class, 'create_pdf'])->name('reporte_materiales_por_proyecto')->middleware('auth');
+Route::get('reporte_materiales_proyecto/{id}', [ProyectoController::class, 'create_pdf'])->name('reporte_materiales_por_proyecto')->middleware('auth');
 
 //Maqherramienta
 Route::get('maquinarias',[MaquinariasController::class, 'index'])->name('maquinarias')->middleware('auth');
