@@ -105,7 +105,10 @@ class BoletasController extends Controller
         $boleto->numero_de_impresiones += 1;
         $boleto->update();
 
-        $pdf = Pdf::loadView('boletas.reporte', compact('boleto'));
+        date_default_timezone_set("America/El_Salvador");
+        $fecha = date("Y-m-d H:m:s");
+
+        $pdf = Pdf::loadView('boletas.reporte', compact('boleto', 'fecha'));
 
         return $pdf->stream();
     }

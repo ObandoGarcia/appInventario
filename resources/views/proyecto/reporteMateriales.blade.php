@@ -14,44 +14,43 @@
 <body>
     <div class="container-fluid">
         <h6 class="text-center text-uppercase">MC Constructores S.A. de C.V.</h6>
-        <p id="titulo" class="text-center">Vale de combustible</p>
+        <p id="titulo" class="text-center">Reporte de materiales utilizados por proyecto</p>
         <div class="row">
             <p><strong>Fecha: </strong>{{ $fecha }}</p>
         </div>
         <div class="row">
-            <p><strong>Proyecto: </strong>{{ $boleto->proyecto->nombre }}</p>
-        </div>
-        <div class="row">
-            <p><strong>Equipo: </strong>{{ $boleto->maquinaria->nombre }}</p>
+            <p><strong>Proyecto: </strong>{{ }}</p>
         </div>
         <div class="row">
             <table class="table table-bordered">
                 <thead>
                     <tr>
+                        <th>Nombre material</th>
                         <th>Cantidad</th>
-                        <th>Unidad</th>
-                        <th>Descripcion</th>
+                        <th>Precio unitario</th>
+                        <th>Precio total</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>{{ $boleto->cantidad }}</td>
-                        <td>Galones</td>
-                        <td>{{ $boleto->descripcion  }}</td>
-                    </tr>
+                    @foreach ($proyecto_material as $itemMaterialDetalle)
+                        <tr>
+                            <td>{{ $itemMaterialDetalle->materiales->nombre }}</td>
+                            <td>{{ $itemMaterialDetalle->cantidad }}</td>
+                            <td>$ {{ $itemMaterialDetalle->materiales->precio_por_unidad }}</td>
+                            <td>$ {{ $itemMaterialDetalle->valor_total }}</td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
+        </div>
+        <div class="row">
+            <p><strong>Valor total de materiales para este proyecto: $</strong>{{ $precio_total_materiales }} </p>
         </div>
         <div class="row">
             <p><strong>Observaciones:</strong></p>
         </div>
         <br>
-        <div class="row">
-            <p><strong>Entregado por: </strong>{{ $boleto->entregado_por }}</p>
-        </div>
-        <div class="row">
-            <p><strong>Recibido por: </strong>{{ $boleto->recibido_por }}</p>
-        </div>
+        <br>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">

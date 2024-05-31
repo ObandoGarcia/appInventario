@@ -14,6 +14,7 @@ use App\Models\Material;
 use App\Models\ProyectosConductores;
 use App\Models\ProyectosHerramientas;
 use App\Models\ProyectosMaquinarias;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ProyectoController extends Controller
 {
@@ -107,8 +108,7 @@ class ProyectoController extends Controller
         $proyecto_material = ProyectosMateriales::where('proyecto_id', '=', $id)->get();
 
         //Actualizar precios de los materiales
-        foreach($proyecto_material as $ItemPrecioMaterial)
-        {
+        foreach ($proyecto_material as $ItemPrecioMaterial) {
             $ItemPrecioMaterial->valor_total = $ItemPrecioMaterial->cantidad * $ItemPrecioMaterial->materiales->precio_por_unidad;
             $ItemPrecioMaterial->update();
         }
@@ -377,5 +377,19 @@ class ProyectoController extends Controller
         $proyecto_conductor->delete();
 
         return redirect()->route('detalle_proyecto', ['id' => $proyectoId]);
+    }
+
+    //Crear pdf
+    public function create_pdf($proyectoId)
+    {
+        $proyecto_material = ProyectosMateriales::where('proyecto_id', '=', $proyectoId)->get();
+        $precio_total_materiales = ProyectosMateriales::where('proyecto_id', '=', $proyectoId)->sum('valor_total');
+
+        date_default_timezone_set("America/El_Salvador");
+        $fecha = date("Y-m-d H:m:s");
+
+        $pdf = Pdf::loadView('proyecto.reporteMateriales', compact('proyecto_material', 'fecha', 'precio_total_materiales'));
+
+        return $pdf->stream();
     }
 }

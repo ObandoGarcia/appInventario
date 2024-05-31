@@ -3,7 +3,7 @@
 @section('contenido-dinamico')
     <div>
         <h1>Proyecto: <strong>{{ $proyecto->nombre }}</strong></h1>
-        <h3><strong>Estado del proyecto:</strong></h3>
+        <h3><strong>Estado del proyecto: </strong>{{ $proyecto->estado->nombre }}</h3>
         <h5>Detalle de Materiales, maquinarias, herramientas asociadas a este proyecto</h5>
         <br>
         <nav>
@@ -25,6 +25,9 @@
                 <br>
                 <a href="{{ route('agregar_detalle_material', $proyecto->id) }}">
                     <button class="btn btn-primary"><i class="bi bi-plus-square"></i> Agregar material</button>
+                </a>
+                <a href="{{ route('reporte_materiales_por_proyecto', $proyecto->id) }}">
+                    <button class="btn btn-primary"><i class="bi bi-filetype-pdf"></i> Imprimir pdf</button>
                 </a>
                 <br>
                 <br>
