@@ -54,6 +54,10 @@ class UserController extends Controller
         ]);
 
         $usuario = User::find($usuarioId);
+        $usuario->name = $request->name;
+        $usuario->email = $request->email;
+        $usuario->update();
 
+        return redirect()->route('usuarios');
     }
 }

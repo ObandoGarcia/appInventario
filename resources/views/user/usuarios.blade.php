@@ -8,6 +8,7 @@
             <table class="table table-hover table-bordered">
                 <thead>
                     <tr>
+                        <th>Rol de usuario</th>
                         <th>Nombre</th>
                         <th>Email</th>
                         <th>Acciones</th>
@@ -16,17 +17,25 @@
                 <tbody>
                     @foreach ($usuarios as $itemUsuario)
                         <tr>
+                            <td>
+                                @if ($itemUsuario->id == 1)
+                                    Administrador
+                                @else
+                                    Usuario
+                                @endif()
+                            </td>
                             <td>{{ $itemUsuario->name }}</td>
                             <td>{{ $itemUsuario->email }}</td>
                             <td>
                                 @role('administrador')
-                                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalEditUser{{ $itemUsuario->id }}">Editar</button>
+                                    <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                                        data-bs-target="#modalEditUser{{ $itemUsuario->id }}">Editar</button>
                                 @endrole
                             </td>
                         </tr>
                         <!-- Modal -->
-                        <div class="modal fade" id="modalEditUser{{ $itemUsuario->id }}" tabindex="-1" aria-labelledby="modalDeleteMarca"
-                            aria-hidden="true">
+                        <div class="modal fade" id="modalEditUser{{ $itemUsuario->id }}" tabindex="-1"
+                            aria-labelledby="modalDeleteMarca" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -34,14 +43,15 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                     </div>
-                                    <form action="" method="POST">
+                                    <form action="{{ route('editar_usuario', $itemUsuario->id) }}" method="POST">
                                         @csrf
 
                                         <div class="modal-body">
 
                                             <div class="mb-3">
                                                 <label class="form-label" for="name">Nombre</label>
-                                                <input type="text" name="name" class="form-control" value="{{ $itemUsuario->name }}">
+                                                <input type="text" name="name" class="form-control"
+                                                    value="{{ $itemUsuario->name }}">
                                                 @error('name')
                                                     <p class="text-danger">{{ $message }}</p>
                                                 @enderror
@@ -49,7 +59,8 @@
 
                                             <div class="mb-3">
                                                 <label class="form-label" for="email">Correo electronico</label>
-                                                <input type="email" name="name" class="form-control" value="{{ $itemUsuario->email }}">
+                                                <input type="email" name="email" class="form-control"
+                                                    value="{{ $itemUsuario->email }}">
                                                 @error('email')
                                                     <p class="text-danger">{{ $message }}</p>
                                                 @enderror
@@ -57,7 +68,8 @@
 
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Cerrar</button>
                                             <input type="submit" class="btn btn-primary" value="Editar usuario">
                                         </div>
                                     </form>
