@@ -35,7 +35,9 @@
                                 <a href="{{ route('editar_encargado', $itemEncargado->id) }}">
                                     <button class="btn btn-warning">Editar</button>
                                 </a>
-                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDeleteEncargado{{ $itemEncargado->id }}">Eliminar</button>
+                               @role('administrador')
+                               <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDeleteEncargado{{ $itemEncargado->id }}">Eliminar</button>
+                               @endrole
                             </td>
                         </tr>
 

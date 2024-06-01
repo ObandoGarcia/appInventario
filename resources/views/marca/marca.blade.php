@@ -24,7 +24,9 @@
                                 <a href="{{ route('editar_marca', $itemMarca->id) }}">
                                     <button class="btn btn-warning">Editar</button>
                                 </a>
-                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDeleteMarca{{ $itemMarca->id }}">Eliminar</button>
+                                @role('administrador')
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDeleteMarca{{ $itemMarca->id }}">Eliminar</button>
+                                @endrole
                             </td>
                         </tr>
 

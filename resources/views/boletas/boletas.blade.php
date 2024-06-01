@@ -28,9 +28,11 @@
                                 <a href="{{ route('ver_boleta', $itemBoleta->id) }}">
                                     <button class="btn btn-info">Ver detalles</button>
                                 </a>
+                                @role('administrador')
                                 <a href="{{ route('editar_boleta', $itemBoleta->id) }}">
                                     <button class="btn btn-warning">Editar</button>
                                 </a>
+                                @endrole
                                 <a href="{{ route('reporte_combustible', $itemBoleta->id) }}">
                                     <button class="btn btn-primary"><i class="bi bi-filetype-pdf"></i> Imprimir pdf</button>
                                 </a>

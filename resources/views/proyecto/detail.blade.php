@@ -54,14 +54,16 @@
                                             data-bs-target="#modalAddMaterial{{ $itemMaterialDetalle->materiales->id }}">
                                             <i class="bi bi-plus-lg"></i> Agregar
                                         </button>
-                                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
-                                            data-bs-target="#modalSubstractMaterial{{ $itemMaterialDetalle->materiales->id }}">
-                                            <i class="bi bi-dash"></i> Quitar
-                                        </button>
-                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                            data-bs-target="#modalDeleteMaterial{{ $itemMaterialDetalle->materiales->id }}">
-                                            <i class="bi bi-trash"></i> Eliminar
-                                        </button>
+                                        @role('administrador')
+                                            <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                                                data-bs-target="#modalSubstractMaterial{{ $itemMaterialDetalle->materiales->id }}">
+                                                <i class="bi bi-dash"></i> Quitar
+                                            </button>
+                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                                data-bs-target="#modalDeleteMaterial{{ $itemMaterialDetalle->materiales->id }}">
+                                                <i class="bi bi-trash"></i> Eliminar
+                                            </button>
+                                        @endrole
                                     </td>
                                 </tr>
 
@@ -103,7 +105,8 @@
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary"
                                                             data-bs-dismiss="modal">Cancelar</button>
-                                                        <input type="submit" value="Guardar datos" class="btn btn-primary">
+                                                        <input type="submit" value="Guardar datos"
+                                                            class="btn btn-primary">
                                                     </div>
                                                 </form>
                                             </div>
@@ -230,10 +233,12 @@
                                 <tr>
                                     <td>{{ $itemProyectoMaquinaria->maquinarias->nombre }}</td>
                                     <td>
-                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                            data-bs-target="#modalDeleteMaquinaria{{ $itemProyectoMaquinaria->id }}">
-                                            <i class="bi bi-trash"></i> Eliminar
-                                        </button>
+                                        @role('administrador')
+                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                                data-bs-target="#modalDeleteMaquinaria{{ $itemProyectoMaquinaria->id }}">
+                                                <i class="bi bi-trash"></i> Eliminar
+                                            </button>
+                                        @endrole
 
                                         @if ($itemProyectoMaquinaria->maquinarias->disponible == false)
                                             <form
@@ -359,20 +364,22 @@
                                             data-bs-target="#modalAddHerramienta{{ $itemProyectoHerramienta->id }}">
                                             <i class="bi bi-plus-lg"></i> Agregar
                                         </button>
-                                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
-                                            data-bs-target="#modalSubstractHerramienta{{ $itemProyectoHerramienta->id }}">
-                                            <i class="bi bi-dash"></i> Quitar
-                                        </button>
-                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                            data-bs-target="#modalDeleteHerramienta{{ $itemProyectoHerramienta->id }}">
-                                            <i class="bi bi-trash"></i> Eliminar
-                                        </button>
-                                        @if ($itemProyectoHerramienta->cantidad_devuelta == 0 || $itemProyectoHerramienta->cantidad_devuelta == null)
-                                            <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                                data-bs-target="#modalRetornarHerramienta{{ $itemProyectoHerramienta->id }}">
-                                                <i class="bi bi-arrow-clockwise"></i> Retornar herramientas
+                                        @role('administrador')
+                                            <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                                                data-bs-target="#modalSubstractHerramienta{{ $itemProyectoHerramienta->id }}">
+                                                <i class="bi bi-dash"></i> Quitar
                                             </button>
-                                        @endif
+                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                                data-bs-target="#modalDeleteHerramienta{{ $itemProyectoHerramienta->id }}">
+                                                <i class="bi bi-trash"></i> Eliminar
+                                            </button>
+                                            @if ($itemProyectoHerramienta->cantidad_devuelta == 0 || $itemProyectoHerramienta->cantidad_devuelta == null)
+                                                <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                                    data-bs-target="#modalRetornarHerramienta{{ $itemProyectoHerramienta->id }}">
+                                                    <i class="bi bi-arrow-clockwise"></i> Retornar herramientas
+                                                </button>
+                                            @endif
+                                        @endrole
 
                                     </td>
                                 </tr>
@@ -581,14 +588,16 @@
                                 <tr>
                                     <td>{{ $itemConductor->conductores->nombre }}</td>
                                     <td>
-                                        <form
-                                            action="{{ route('eliminar_conductor_por_proyecto', ['proyectoId' => $proyecto->id, 'proyectoconductorId' => $itemConductor->id]) }}"
-                                            method="POST">
-                                            @csrf
-                                            @method('PUT')
+                                        @role('administrador')
+                                            <form
+                                                action="{{ route('eliminar_conductor_por_proyecto', ['proyectoId' => $proyecto->id, 'proyectoconductorId' => $itemConductor->id]) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('PUT')
 
-                                            <input type="submit" value="Eliminar registro" class="btn btn-danger">
-                                        </form>
+                                                <input type="submit" value="Eliminar registro" class="btn btn-danger">
+                                            </form>
+                                        @endrole
                                     </td>
                                 </tr>
                             @endforeach

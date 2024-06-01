@@ -63,18 +63,20 @@
             </a>
         </li>
 
-        <li class="sidebar-item">
-            <a href="{{ route('usuarios') }}" class="sidebar-link">
-                <i class="bi bi-person-vcard-fill"></i>
-                <span>Usuarios</span>
-            </a>
-        </li>
-    </ul>
-    <div class="sidebar-footer">
-        <a href="{{ route('cerrar_sesion') }}" class="sidebar-link">
-            <i class="bi bi-box-arrow-in-left"></i>
-            <span>Cerrar sesion</span>
-        </a>
-    </div>
-</aside>
+        @role('administrador')
+            <li class="sidebar-item">
+                <a href="{{ route('usuarios') }}" class="sidebar-link">
+                    <i class="bi bi-person-vcard-fill"></i>
+                    <span>Usuarios</span>
+                </a>
+            </li>
+        @endrole
 
+        </ul>
+        <div class="sidebar-footer">
+            <a href="{{ route('cerrar_sesion') }}" class="sidebar-link">
+                <i class="bi bi-box-arrow-in-left"></i>
+                <span>Cerrar sesion</span>
+            </a>
+        </div>
+    </aside>

@@ -44,4 +44,16 @@ class UserController extends Controller
 
         return view('user.usuarios', compact('usuarios'));
     }
+
+    //Editar usuario
+    public function update(Request $request, $usuarioId)
+    {
+        $request->validate([
+            'email' => ['required','email'],
+            'name' => ['required']
+        ]);
+
+        $usuario = User::find($usuarioId);
+
+    }
 }

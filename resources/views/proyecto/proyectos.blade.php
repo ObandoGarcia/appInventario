@@ -25,7 +25,7 @@
                         <tr>
                             <td>{{ $itemProyecto->nombre }}</td>
                             <td>{{ $itemProyecto->ubicacion }}</td>
-                            <td>{{ $itemProyecto->fecha_de_incio}}</td>
+                            <td>{{ $itemProyecto->fecha_de_incio }}</td>
                             <td>{{ $itemProyecto->fecha_de_finalizacion }}</td>
                             <td>{{ $itemProyecto->encargados->nombre }}</td>
                             <td>
@@ -42,9 +42,11 @@
                             </td>
                             <td>{{ $itemProyecto->usuario->name }}</td>
                             <td>
-                                <a href="{{ route('editar_proyecto', $itemProyecto->id) }}">
-                                    <button class="btn btn-warning">Editar</button>
-                                </a>
+                                @role('administrador')
+                                    <a href="{{ route('editar_proyecto', $itemProyecto->id) }}">
+                                        <button class="btn btn-warning">Editar</button>
+                                    </a>
+                                @endrole
                                 <a href="{{ route('detalle_proyecto', $itemProyecto->id) }}">
                                     <button class="btn btn-info">Crear detalle</button>
                                 </a>

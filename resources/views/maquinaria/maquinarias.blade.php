@@ -33,9 +33,11 @@
                                 <a href="{{ route('ver_maquinaria', $itemMaquinaria->id) }}">
                                     <button class="btn btn-info">Ver detalles</button>
                                 </a>
+                                @role('administrador')
                                 <a href="{{ route('editar_maquinaria', $itemMaquinaria->id) }}">
                                     <button class="btn btn-warning">Editar</button>
                                 </a>
+                                @endrole
                             </td>
                         </tr>
                     @endforeach

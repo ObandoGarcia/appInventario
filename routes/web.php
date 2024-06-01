@@ -21,6 +21,7 @@ Route::get('cerrar_sesion', [UserController::class, 'cerrar_sesion'])->name('cer
 
 //User
 Route::get('usuarios', [UserController::class, 'index'])->name('usuarios')->middleware('auth');
+Route::post('editar_usuario/(id)', [UserController::class, 'update'])->name('editar_usuario')->middleware('auth');
 
 //Marcas
 Route::get('marcas',[MarcasController::class, 'index'])->name('marcas')->middleware('auth');

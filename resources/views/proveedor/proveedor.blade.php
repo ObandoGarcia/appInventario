@@ -28,7 +28,9 @@
                                 <a href="{{ route('editar_proveedor', $itemProveedor->id) }}">
                                     <button class="btn btn-warning">Editar</button>
                                 </a>
-                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDeleteProveedor{{ $itemProveedor->id }}">Eliminar</button>
+                                @role('administrador')
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDeleteProveedor{{ $itemProveedor->id }}">Eliminar</button>
+                                @endrole
                             </td>
                         </tr>
 
