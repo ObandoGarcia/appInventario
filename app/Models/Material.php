@@ -7,12 +7,23 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Laravel\Scout\Searchable;
 
 class Material extends Model
 {
     use HasFactory;
+    use Searchable;
 
     protected $table = 'materiales';
+
+    public function toSearchableArray(): array
+    {
+        return [
+            'nombre' => $this->nombre,
+            'descripcion' => $this->descripcion,
+            'medida' => $this->medida
+        ];
+    }
 
     //Relaciones
     //Relacion de uno a muchos entre materiales y usuarios

@@ -9,8 +9,8 @@
         <div>
             <div class="card w-100 mb-3">
                 <div class="card-body">
-                    <h5 class="card-title">Buscar material por nombre</h5>
-                    <p class="card-text">Ingrese el nombre del material para iniciar la busqueda.</p>
+                    <h5 class="card-title">Buscar material por nombre, descripcion o medida</h5>
+                    <p class="card-text">Ingrese el nombre, descripcion o medida del material para iniciar la busqueda.</p>
                     <form action="{{ route('buscar_por_nombre') }}" method="POST">
                         @csrf
 

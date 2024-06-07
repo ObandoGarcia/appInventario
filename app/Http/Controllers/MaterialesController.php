@@ -25,7 +25,7 @@ class MaterialesController extends Controller
         if($request->buscar)
         {
             $busqueda = $request->buscar;
-            $materiales = Material::orwhere('nombre', 'like', $busqueda, '%')->paginate(5);
+            $materiales = Material::search($busqueda)->paginate(5);
 
             return view('material.material',compact('materiales'));
         }else
