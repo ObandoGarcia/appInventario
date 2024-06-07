@@ -43,5 +43,6 @@ class DatabaseSeeder extends Seeder
         $estado4 = Estado::create(['nombre' => 'nuevo', 'usuario_id' => 1]);
         $estado5 = Estado::create(['nombre' => 'usado', 'usuario_id' => 1]);
         $estado6 = Estado::create(['nombre' => 'alquiler', 'usuario_id' => 1]);
+        $estado7 = Estado::create(['nombre' => 'obsoleta', 'usuario_id' => 1]);
     }
 }

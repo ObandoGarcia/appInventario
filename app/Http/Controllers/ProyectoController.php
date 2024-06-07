@@ -102,6 +102,7 @@ class ProyectoController extends Controller
     {
         //Seccion de materiales
         $proyecto = Proyecto::find($id);
+
         $maquinarias = Maquinaria::where('disponible', 1)->get();
         $conductoresSelect = Conductor::all();
 

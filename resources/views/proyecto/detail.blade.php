@@ -233,12 +233,17 @@
                                 <tr>
                                     <td>{{ $itemProyectoMaquinaria->maquinarias->nombre }}</td>
                                     <td>
-                                        @role('administrador')
-                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                                data-bs-target="#modalDeleteMaquinaria{{ $itemProyectoMaquinaria->id }}">
-                                                <i class="bi bi-trash"></i> Eliminar
-                                            </button>
-                                        @endrole
+                                        @if ($itemProyectoMaquinaria->maquinarias->disponible == false)
+                                            @role('administrador')
+                                                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                                    data-bs-target="#modalDeleteMaquinaria{{ $itemProyectoMaquinaria->id }}">
+                                                    <i class="bi bi-trash"></i> Eliminar
+                                                </button>
+                                            @endrole
+                                        @else
+                                            <span class="badge text-bg-primary">Esta maquinaria ya ha sido retornada a la tabla principal de maquinarias</span>
+                                        @endif
+
 
                                         @if ($itemProyectoMaquinaria->maquinarias->disponible == false)
                                             <form
@@ -360,26 +365,30 @@
                                     <td>{{ $itemProyectoHerramienta->cantidad }}</td>
                                     <td>{{ $itemProyectoHerramienta->cantidad_devuelta }}</td>
                                     <td>
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#modalAddHerramienta{{ $itemProyectoHerramienta->id }}">
-                                            <i class="bi bi-plus-lg"></i> Agregar
-                                        </button>
-                                        @role('administrador')
-                                            <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
-                                                data-bs-target="#modalSubstractHerramienta{{ $itemProyectoHerramienta->id }}">
-                                                <i class="bi bi-dash"></i> Quitar
+                                        @if ($itemProyectoHerramienta->cantidad_devuelta == 0)
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                data-bs-target="#modalAddHerramienta{{ $itemProyectoHerramienta->id }}">
+                                                <i class="bi bi-plus-lg"></i> Agregar
                                             </button>
-                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                                data-bs-target="#modalDeleteHerramienta{{ $itemProyectoHerramienta->id }}">
-                                                <i class="bi bi-trash"></i> Eliminar
-                                            </button>
-                                            @if ($itemProyectoHerramienta->cantidad_devuelta == 0 || $itemProyectoHerramienta->cantidad_devuelta == null)
-                                                <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                                    data-bs-target="#modalRetornarHerramienta{{ $itemProyectoHerramienta->id }}">
-                                                    <i class="bi bi-arrow-clockwise"></i> Retornar herramientas
+                                            @role('administrador')
+                                                <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                                                    data-bs-target="#modalSubstractHerramienta{{ $itemProyectoHerramienta->id }}">
+                                                    <i class="bi bi-dash"></i> Quitar
                                                 </button>
-                                            @endif
-                                        @endrole
+                                                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                                    data-bs-target="#modalDeleteHerramienta{{ $itemProyectoHerramienta->id }}">
+                                                    <i class="bi bi-trash"></i> Eliminar
+                                                </button>
+                                                @if ($itemProyectoHerramienta->cantidad_devuelta == 0 || $itemProyectoHerramienta->cantidad_devuelta == null)
+                                                    <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                                        data-bs-target="#modalRetornarHerramienta{{ $itemProyectoHerramienta->id }}">
+                                                        <i class="bi bi-arrow-clockwise"></i> Retornar herramientas
+                                                    </button>
+                                                @endif
+                                            @endrole
+                                        @else
+                                            <span class="badge text-bg-primary">Esta herramienta ya ha sido retornada a la tabla principal de herramientas</span>
+                                        @endif
 
                                     </td>
                                 </tr>

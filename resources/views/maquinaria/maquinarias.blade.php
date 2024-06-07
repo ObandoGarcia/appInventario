@@ -13,6 +13,7 @@
                         <th>Nombre</th>
                         <th>Descripcion</th>
                         <th>Disponible</th>
+                        <th>Estado</th>
                         <th>Creado/Modificado por</th>
                         <th>Acciones</th>
                     </tr>
@@ -26,6 +27,13 @@
                                 <span class="badge text-bg-success">Disponible</span>
                                 @else
                                 <span class="badge text-bg-danger">No disponible - en proyecto</span>
+                                @endif
+                            </td>
+                            <td>
+                                @if ($itemMaquinaria->estados->nombre == "obsoleta")
+                                    <span class="badge text-bg-danger">Obsoleta</span>
+                                @else
+                                    {{ $itemMaquinaria->estados->nombre }}
                                 @endif
                             </td>
                             <td>{{ $itemMaquinaria->usuarios->name }}</td>
