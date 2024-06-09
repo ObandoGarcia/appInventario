@@ -233,7 +233,7 @@
                                 <tr>
                                     <td>{{ $itemProyectoMaquinaria->maquinarias->nombre }}</td>
                                     <td>
-                                        @if ($itemProyectoMaquinaria->maquinarias->disponible == false)
+                                        @if ($itemProyectoMaquinaria->maquinarias->disponible == false && $itemProyectoMaquinaria->proyecto_id == $proyecto->id )
                                             @role('administrador')
                                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                                     data-bs-target="#modalDeleteMaquinaria{{ $itemProyectoMaquinaria->id }}">
