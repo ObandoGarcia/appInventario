@@ -20,6 +20,8 @@ return new class extends Migration
                 ->constrained('maquinarias')
                 ->cascadeOnUpdate()
                 ->nullOnDelete();
+            $table->boolean("estaCompletada")
+                ->nullable();
             $table->foreignId('usuario_id')
                 ->nullable()
                 ->constrained('users')

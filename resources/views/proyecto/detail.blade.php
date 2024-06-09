@@ -233,7 +233,7 @@
                                 <tr>
                                     <td>{{ $itemProyectoMaquinaria->maquinarias->nombre }}</td>
                                     <td>
-                                        @if ($itemProyectoMaquinaria->maquinarias->disponible == false && $itemProyectoMaquinaria->proyecto_id == $proyecto->id )
+                                        @if ($itemProyectoMaquinaria->maquinarias->disponible == false && $itemProyectoMaquinaria->estaCompletada == false)
                                             @role('administrador')
                                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                                     data-bs-target="#modalDeleteMaquinaria{{ $itemProyectoMaquinaria->id }}">
@@ -245,7 +245,7 @@
                                         @endif
 
 
-                                        @if ($itemProyectoMaquinaria->maquinarias->disponible == false)
+                                        @if ($itemProyectoMaquinaria->maquinarias->disponible == false && $itemProyectoMaquinaria->estaCompletada == false)
                                             <form
                                                 action="{{ route('retornar_maquinaria_por_proyecto', ['proyectoId' => $proyecto->id, 'maquinariaId' => $itemProyectoMaquinaria->maquinaria_id]) }}"
                                                 method="POST">

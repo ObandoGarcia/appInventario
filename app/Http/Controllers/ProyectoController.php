@@ -231,6 +231,7 @@ class ProyectoController extends Controller
         $proyecto_maquinaria = new ProyectosMaquinarias();
         $proyecto_maquinaria->proyecto_id = $proyectoId;
         $proyecto_maquinaria->maquinaria_id = $request->maquinaria;
+        $proyecto_maquinaria->estaCompletada = false;
         $proyecto_maquinaria->usuario_id = auth()->user()->id;
         $proyecto_maquinaria->save();
 
@@ -258,9 +259,13 @@ class ProyectoController extends Controller
     //Retornar maquinaria a la tabla principal
     public function retornar_maquinaria_por_proyecto($proyectoId, $maquinaria_id)
     {
+        $proyecto_maquinaria = ProyectosMaquinarias::find($maquinaria_id);
+        $proyecto_maquinaria->estaCompletada = true;
+
         $maquinaria = Maquinaria::find($maquinaria_id);
         $maquinaria->disponible = true;
         $maquinaria->update();
+        $proyecto_maquinaria->update();
 
         return redirect()->route('detalle_proyecto', ['id' => $proyectoId]);
     }
