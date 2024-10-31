@@ -2,8 +2,6 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-
 use App\Models\Estado;
 use Illuminate\Database\Seeder;
 use App\Models\User;
@@ -12,7 +10,6 @@ use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
-
     public function run(): void
     {
         $usuario = new User();
@@ -35,14 +32,5 @@ class DatabaseSeeder extends Seeder
 
         $usuario2 = User::find(2);
         $usuario2->assignRole($rol2);
-
-        $estado = Estado::create(['nombre' => 'activo', 'usuario_id' => 1]);
-        $estado1 = Estado::create(['nombre' => 'inactivo', 'usuario_id' => 1]);
-        $estado2 = Estado::create(['nombre' => 'completado', 'usuario_id' => 1]);
-        $estado3 = Estado::create(['nombre' => 'cancelado', 'usuario_id' => 1]);
-        $estado4 = Estado::create(['nombre' => 'nuevo', 'usuario_id' => 1]);
-        $estado5 = Estado::create(['nombre' => 'usado', 'usuario_id' => 1]);
-        $estado6 = Estado::create(['nombre' => 'alquiler', 'usuario_id' => 1]);
-        $estado7 = Estado::create(['nombre' => 'obsoleta', 'usuario_id' => 1]);
     }
 }

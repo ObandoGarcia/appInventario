@@ -4,8 +4,6 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -29,65 +27,5 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-    //Marcas
-    public function marcas():HasMany
-    {
-        return $this->hasMany(Marca::class);
-    }
-
-    //Estados
-    public function estados():HasMany
-    {
-        return $this->hasMany(Estado::class);
-    }
-
-    //Proveedores
-    public function proveedores():HasMany
-    {
-        return $this->hasMany(Proveedor::class);
-    }
-
-    //Materiales
-    public function materiales():HasMany
-    {
-        return $this->hasMany(Material::class);
-    }
-
-    //Encargados de proyecto
-    public function encargados():HasMany
-    {
-        return $this->hasMany(Encargado::class);
-    }
-
-    //Proyectos
-    public function proyectos():HasMany
-    {
-        return $this->hasMany(Proyecto::class);
-    }
-
-    //Maquinarias
-    public function maquinarias():HasMany
-    {
-        return $this->hasMany(Maquinaria::class);
-    }
-
-    //Herramientas
-    public function herramientas():HasMany
-    {
-        return $this->hasMany(Herramientas::class);
-    }
-
-    //Conductor
-    public function conductores():HasMany
-    {
-        return $this->hasMany(Conductor::class);
-    }
-
-    //Boletas
-    public function boletas():HasMany
-    {
-        return $this->hasMany(Boleto::class);
-    }
 }
 

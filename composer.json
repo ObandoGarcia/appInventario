@@ -12,6 +12,7 @@
         "laravel/sanctum": "^3.2",
         "laravel/scout": "^10.9",
         "laravel/tinker": "^2.8",
+        "laraveles/spanish": "^1.5",
         "mckenziearts/laravel-notify": "^2.4",
         "spatie/laravel-permission": "^6.4"
     },
