@@ -9,16 +9,16 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function iniciar_sesion(Request $request):mixed
+    public function start_session(Request $request):mixed
     {
         $request->validate([
             'email' => ['required','email'],
             'password' => ['required']
         ]);
 
-        $credenciales = request()->only('email', 'password');
+        $credentials = request()->only('email', 'password');
 
-        if(Auth::attempt($credenciales))
+        if(Auth::attempt($credentials))
         {
             request()->session()->regenerateToken();
             return redirect('dashboard')->with('success', 'Bienvenido. Has iniciado sesion correctamente.');
@@ -27,13 +27,13 @@ class UserController extends Controller
         return back()->with('fail', 'El correo electronico o la contrasenia ingresados son incorrectos. Intente de nuevo');
     }
 
-    public function cerrar_sesion(Request $request)
+    public function close_session(Request $request)
     {
         Auth::logout();
         $request->session()->invalidate();
         request()->session()->regenerateToken();
 
-        return redirect()->route('bienvenido')->with('success', 'Has cerrado sesion correctamente');
+        return redirect()->route('welcome')->with('success', 'Has cerrado sesion correctamente');
     }
   
 }

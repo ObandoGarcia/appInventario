@@ -9,7 +9,7 @@
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ url('/') }}/assets/css/estilos.css">
+    <link rel="stylesheet" href="{{ url('/') }}/assets/css/style.css">
 
 </head>
 
@@ -25,14 +25,13 @@
                 @endif
             </div>
             <div class="position-absolute top-50 start-50 translate-middle">
-                <img src="{{ url('/') }}/assets/img/libros.png" alt="Imagen de inventario" width="175em"
+                <img src="{{ url('/') }}/assets/img/books.png" alt="imagen de libros" width="175em"
                     height="175em" class="rounded mx-auto d-block">
                 <br>
                 <h3 class="text-center"><strong>Iniciar sesion</strong></h3>
                 <br>
-                <form action="{{ route('iniciar_sesion') }}" method="POST">
+                <form action="{{ route('start_session') }}" method="POST">
                     @csrf
-
 
                     <label for="email">Correo electronico</label>
                     <input type="email" name="email" class="form-control" value="{{ old('email') }}">

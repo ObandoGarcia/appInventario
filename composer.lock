@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "079cafad8acc155748a2ca421a314448",
+    "content-hash": "08a64a05b602849dc44eafc5f17a7b98",
     "packages": [
         {
             "name": "barryvdh/laravel-dompdf",
@@ -1719,72 +1719,6 @@
             "time": "2024-01-04T16:10:04+00:00"
         },
         {
-            "name": "laraveles/spanish",
-            "version": "1.5.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Laraveles/spanish.git",
-                "reference": "2224e3db7ec399952523b0769a7677de0b6afd8b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Laraveles/spanish/zipball/2224e3db7ec399952523b0769a7677de0b6afd8b",
-                "reference": "2224e3db7ec399952523b0769a7677de0b6afd8b",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/console": ">=5.4.0",
-                "illuminate/support": ">=5.4.0",
-                "php": ">=5.6"
-            },
-            "require-dev": {
-                "orchestra/testbench": "^3.4|^4.0",
-                "phpunit/phpunit": "^5.6|^6.3|^7.0|^8.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Laraveles\\Spanish\\SpanishServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Laraveles\\Spanish\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Israel Ortuño",
-                    "email": "ai.ortuno@gmail.com"
-                },
-                {
-                    "name": "Cesar Garcia",
-                    "email": "cesargb@gmail.com",
-                    "homepage": "https://github.com/cesargb",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Conjunto de traducciones en español para Laravel",
-            "homepage": "https://github.com/Laraveles/spanish",
-            "keywords": [
-                "laravel",
-                "laraveles",
-                "spanish",
-                "traduccion"
-            ],
-            "support": {
-                "issues": "https://github.com/Laraveles/spanish/issues",
-                "source": "https://github.com/Laraveles/spanish/tree/master"
-            },
-            "time": "2020-06-30T06:01:43+00:00"
-        },
-        {
             "name": "league/commonmark",
             "version": "2.4.2",
             "source": {
@@ -2243,76 +2177,6 @@
                 "source": "https://github.com/Masterminds/html5-php/tree/2.9.0"
             },
             "time": "2024-03-31T07:05:07+00:00"
-        },
-        {
-            "name": "mckenziearts/laravel-notify",
-            "version": "v2.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/mckenziearts/laravel-notify.git",
-                "reference": "fddde15ae2407792f2884e6f9107d49e9e608cbe"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/mckenziearts/laravel-notify/zipball/fddde15ae2407792f2884e6f9107d49e9e608cbe",
-                "reference": "fddde15ae2407792f2884e6f9107d49e9e608cbe",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/support": "^8.0|^9.0|^10.0",
-                "php": "~8.0"
-            },
-            "require-dev": {
-                "laravel/pint": "^1.6",
-                "mockery/mockery": "^1.0",
-                "phpunit/phpunit": "^8.0|^9.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Mckenziearts\\Notify\\LaravelNotifyServiceProvider"
-                    ],
-                    "aliases": {
-                        "Notify": "Mckenziearts\\Notify\\Facades\\LaravelNotify"
-                    }
-                }
-            },
-            "autoload": {
-                "files": [
-                    "src/helpers.php"
-                ],
-                "psr-4": {
-                    "Mckenziearts\\Notify\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Arthur Monney",
-                    "email": "monneylobe@gmail.com"
-                }
-            ],
-            "description": "Flexible flash notifications for Laravel",
-            "keywords": [
-                "laravel",
-                "laravel-notify",
-                "notification"
-            ],
-            "support": {
-                "issues": "https://github.com/mckenziearts/laravel-notify/issues",
-                "source": "https://github.com/mckenziearts/laravel-notify"
-            },
-            "funding": [
-                {
-                    "url": "https://paypal.me/jvquilichini?locale.x=fr_FR",
-                    "type": "custom"
-                }
-            ],
-            "time": "2023-03-28T05:01:47+00:00"
         },
         {
             "name": "monolog/monolog",
