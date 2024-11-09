@@ -10,31 +10,31 @@
         @endif
         <br>
         <h1>Editoriales de libros</h1>
-        <a href="{{ route('create_editorial') }}"><button class="btn btn-primary">Agregar categoria</button></a>
+        <a href="{{ route('create_editorial') }}"><button class="btn btn-primary"><i class="bi bi-plus-circle"></i> Agregar editorial</button></a>
         <br>
         <br>
         <div class="table-responsive">
             <table class="table table-hover table-bordered align-middle">
                 <thead>
                     <tr>
-                        <th>Categoria</th>
-                        <th>Descripcion</th>
+                        <th>Nombre</th>
+                        <th>Telefono</th>
                         <th>Creado/Modificado por</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody class="table-group-divider">
-                    @foreach ($categories as $itemCategory)
+                    @foreach ($editorials as $itemEditorial)
                         <tr>
-                            <td>{{ $itemCategory->category }}</td>
-                            <td>{{ $itemCategory->description }}</td>
-                            <td>{{ $itemCategory->users->name }}</td>
+                            <td>{{ $itemEditorial->name }}</td>
+                            <td>{{ $itemEditorial->phone }}</td>
+                            <td>{{ $itemEditorial->users->name }}</td>
                             <td>
                                 <div class="btn-group btn-group-sm" role="group">
-                                    <a href="{{ route('edit_category', $itemCategory->id) }}">
+                                    <a href="{{ route('edit_editorial', $itemEditorial->id) }}">
                                         <button class="btn btn-warning"><i class="bi bi-pencil-square"></i> Editar</button>
                                     </a>
-                                    <a href="{{ route('show_category', $itemCategory->id) }}">
+                                    <a href="{{ route('show_editorial', $itemEditorial->id) }}">
                                         <button class="btn btn-danger"><i class="bi bi-trash"></i> Eliminar</button>
                                     </a>
                                 </div>

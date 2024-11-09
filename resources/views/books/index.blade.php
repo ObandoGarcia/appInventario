@@ -9,34 +9,40 @@
         </div>
         @endif
         <br>
-        <h1>Autores de libros</h1>
-        <a href="{{ route('create_author') }}"><button class="btn btn-primary"><i class="bi bi-plus-circle"></i> Agregar autor</button></a>
+        <h1>Libros</h1>
+        <a href="{{ route('create_book') }}"><button class="btn btn-primary"><i class="bi bi-plus-circle"></i> Agregar libro</button></a>
         <br>
         <br>
         <div class="table-responsive">
             <table class="table table-hover table-bordered align-middle">
                 <thead>
                     <tr>
-                        <th>Nombre</th>
-                        <th>Apellido</th>
-                        <th>Nacionalidad</th>
+                        <th>Titulo</th>
+                        <th>Imagen</th>
+                        <th>Categoria</th>
+                        <th>Existencias</th>
+                        <th>Disponibles</th>
+                        <th>Precio de venta</th>
                         <th>Creado/Modificado por</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody class="table-group-divider">
-                    @foreach ($authors as $authorItem)
+                    @foreach ($books as $bookItem)
                         <tr>
-                            <td>{{ $authorItem->firstname }}</td>
-                            <td>{{ $authorItem->lastname }}</td>
-                            <td>{{ $authorItem->nationality }}</td>
-                            <td>{{ $authorItem->users->name }}</td>
+                            <td>{{ $bookItem->title }}</td>
+                            <td><img src="{{ asset($bookItem->image_url) }}" alt="Imagen del libro" width="100" height="100"></td>
+                            <td>{{ $bookItem->categories->category }}</td>
+                            <td>{{ $bookItem->quantity }}</td>
+                            <td>{{ $bookItem->available }}</td>
+                            <td> $ {{ $bookItem->sale_price }}</td>
+                            <td>{{ $bookItem->users->name }}</td>
                             <td>
                                 <div class="btn-group btn-group-sm" role="group">
-                                    <a href="{{ route('edit_author', $authorItem->id) }}">
+                                    <a href="{{ route('edit_book', $bookItem->id) }}">
                                         <button class="btn btn-warning"><i class="bi bi-pencil-square"></i> Editar</button>
                                     </a>
-                                    <a href="{{ route('show_author', $authorItem->id) }}">
+                                    <a href="{{ route('show_book', $bookItem->id) }}">
                                         <button class="btn btn-danger"><i class="bi bi-trash3-fill"></i> Eliminar</button>
                                     </a>
                                 </div>

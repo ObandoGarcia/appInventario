@@ -10,7 +10,7 @@
         @endif
         <br>
         <h1>Categorias de libros</h1>
-        <a href="{{ route('create_category') }}"><button class="btn btn-primary">Agregar categoria</button></a>
+        <a href="{{ route('create_category') }}"><button class="btn btn-primary"><i class="bi bi-plus-circle"></i> Agregar categoria</button></a>
         <br>
         <br>
         <div class="table-responsive">

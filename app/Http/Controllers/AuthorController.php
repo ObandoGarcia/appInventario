@@ -80,6 +80,12 @@ class AuthorController extends Controller
         $request->validate($this->validationRules, $this->errorMessages);
 
         $author = Author::find($author_id);
+
+        if($author == null)
+        {
+            return view('authors.index')->with('error', '[Error] El registro solicitado ha sido eliminado de la base de datos');
+        }
+
         $author->firstname = $request->firstname;
         $author->lastname = $request->lastname;
         $author->nationality = $request->nationality;

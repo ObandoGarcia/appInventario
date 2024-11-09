@@ -78,6 +78,12 @@ class CategoryController extends Controller
         $request->validate($this->validationRules, $this->errorMessages);
 
         $category = Category::find($category_id);
+        
+        if($category == null)
+        {
+            return view('categories.index')->with('error', '[Error] El registro solicitado no se encuentra en la base de datos');
+        }
+
         $category->category = $request->category;
         $category->description = $request->description;
         $category->user_id = auth()->user()->id;

@@ -28,6 +28,7 @@
 
                     <br>
                     <input type="submit" value="Guardar registro" class="btn btn-primary">
+                    <input type="reset" value="Limpiar formulario" class="btn btn-info">
                 </form>
             </div>
         </div>

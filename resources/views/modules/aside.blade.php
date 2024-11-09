@@ -20,6 +20,18 @@
                     <span>Categorias</span>
                 </a>
             </li>
+            <li class="sidebar-item">
+                <a href="{{ route('editorials') }}" class="sidebar-link">
+                    <i class="bi bi-journal-text"></i>
+                    <span>Editoriales</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="{{ route('books') }}" class="sidebar-link">
+                    <i class="bi bi-book"></i>
+                    <span>Libros</span>
+                </a>
+            </li>
         </ul>
         <div class="sidebar-footer">
             <a href="{{ route('close_session') }}" class="sidebar-link">
