@@ -12,12 +12,15 @@ use App\Models\Editorial;
 
 class BookController extends Controller
 {
+    //Profit percentaje per book
+    private $profitPercentage = 0.1;
+
     //Validation rules
     private array $validationRules = [
         'title' => ['required', 'string', 'min:3', 'max:75'],
         'internal_code' => ['nullable', 'string', 'min:5', 'max:15'],
         'isbn' => ['nullable', 'string', 'min:13'],
-        'image' => ['required', 'max:2048', 'image'],
+        'image' => ['max:2048', 'image'],
         'quantity' => ['required', 'numeric', 'min:0'],
         'cost' => ['required', 'min:0'],
         'entry_date' => ['nullable', 'date'],
@@ -30,7 +33,6 @@ class BookController extends Controller
         'title.required' => 'El tiltulo es requerido',
         'quantity.required' => 'La cantidad es requerida',
         'cost.required' => 'El costo de compra es requerido',
-        'image.required' => 'La imagen es requerida',
         'image.max' => 'El tamanio maximo de la imagen es de 2048 mb',
         'string' => 'Este campo debe ser texto',
         'title.min' => 'Este campo debe ser mayor a 3 caracteres',
@@ -48,7 +50,7 @@ class BookController extends Controller
     //Index method to call the entire list of books
     public function index()
     {
-        $books = Book::all();
+        $books = Book::orderBy('id', 'desc')->paginate(10);
 
         return view('books.index', compact('books'));
     }
@@ -71,9 +73,6 @@ class BookController extends Controller
     //Store method to sava a record to the database
     public function store(Request $request)
     {
-        //Profit percentaje per book
-        $profitPercentage = 0.1;
-
         $request->validate($this->validationRules, $this->errorMessages);
 
         $book = new Book();
@@ -93,7 +92,7 @@ class BookController extends Controller
         $book->quantity = $request->quantity;
         $book->available = $request->quantity;
         $book->cost = $request->cost;
-        $book->sale_price = $request->cost + ($request->cost * $profitPercentage);
+        $book->sale_price = $request->cost + ($request->cost * $this->profitPercentage);
         $book->state = $request->state;
         $book->entry_date = $request->entry_date;
         $book->author_id = $request->authors;
@@ -118,17 +117,74 @@ class BookController extends Controller
     {
         $book = Book::find($book_id);
 
+        //Search for all authors
+        $authors = Author::all();
+
+        //Search for all categories
+        $categories = Category::all();
+
+        //Search for all editorials
+        $editorials = Editorial::all();
+
         if($book == null)
         {
             return view('books.index')->with('error', '[Error] El registro solicitado no se encuentra en la base de datos');
         }
 
-        return view('books.edit', compact('book'));
+        return view('books.edit', compact('book', 'authors', 'categories', 'editorials'));
     }
 
     //Update method to update a book from database
-    public function update()
+    public function update(Request $request, $book_id)
     {
+        $request->validate($this->validationRules, $this->errorMessages);
+
+        $book = Book::find($book_id);
+
+        if($book == null)
+        {
+            return view('books.index')->with('error', '[Error] El registro solicitado no se encuentra en la base de datos');
+        }
+
+        $book->title = $request->title;
+        $book->internal_code = $request->internal_code;
+        $book->isbn = $request->isbn;
         
+        //Image validation
+        if($request->hasFile('image'))
+        {
+            //Delete current image
+            $url = str_replace('/storage', 'public', $book->image_url);
+            Storage::delete($url);
+
+            //Store new image
+            $image_url = $request->file('image')->store('public/img/books');
+            $url = Storage::url($image_url);
+
+            $book->image_url = $url;
+        }
+
+        $book->quantity = $request->quantity;
+        $book->available = $request->quantity;
+        $book->cost = $request->cost;
+        $book->sale_price = $request->cost + ($request->cost * $this->profitPercentage);
+        $book->state = $request->state;
+        $book->entry_date = $request->entry_date;
+        $book->author_id = $request->authors;
+        $book->category_id = $request->categories;
+        $book->editorial_id = $request->editorials;
+        $book->user_id = auth()->user()->id;
+
+        $result = $book->update();
+
+        if($result)
+        {
+            return redirect()->route('books')->with('success', '[Informacion] Registro actualizado correctamente');
+        }
+        else
+        {
+            return redirect()->route('books')->with('error', '[Informacion] Operacion fallida');
+        }
+
     }
 }
