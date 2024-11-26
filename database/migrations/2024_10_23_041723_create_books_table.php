@@ -17,7 +17,6 @@ return new class extends Migration
                 ->nullable();
             $table->string('image_url')
                 ->nullable();
-            $table->integer('quantity');
             $table->integer('available');
             $table->decimal('cost', total: 8, places: 2, unsigned:false);
             $table->decimal('sale_price', total: 8, places: 2, unsigned:false);

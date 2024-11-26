@@ -68,7 +68,7 @@ class AuthorController extends Controller
 
         if($author == null)
         {
-            return view('authors.index')->with('error', '[Error] El registro solicitado no se encuentra en la base de datos');
+            return redirect()->route('authors')->with('error', '[Error] El registro solicitado no se encuentra en la base de datos');
         }
 
         return view('authors.edit', compact('author'));
@@ -83,7 +83,7 @@ class AuthorController extends Controller
 
         if($author == null)
         {
-            return view('authors.index')->with('error', '[Error] El registro solicitado ha sido eliminado de la base de datos');
+            return redirect()->route('authors')->with('error', '[Error] El registro solicitado ha sido eliminado de la base de datos');
         }
 
         $author->firstname = $request->firstname;

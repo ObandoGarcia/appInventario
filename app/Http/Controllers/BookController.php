@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Book;
 use App\Models\Author;
@@ -70,7 +69,7 @@ class BookController extends Controller
         return view('books.create', compact('authors', 'categories', 'editorials'));
     }
 
-    //Store method to sava a record to the database
+    //Store method to save a record to the database
     public function store(Request $request)
     {
         $request->validate($this->validationRules, $this->errorMessages);
@@ -89,7 +88,6 @@ class BookController extends Controller
             $book->image_url = $url;
         }
 
-        $book->quantity = $request->quantity;
         $book->available = $request->quantity;
         $book->cost = $request->cost;
         $book->sale_price = $request->cost + ($request->cost * $this->profitPercentage);
@@ -128,7 +126,7 @@ class BookController extends Controller
 
         if($book == null)
         {
-            return view('books.index')->with('error', '[Error] El registro solicitado no se encuentra en la base de datos');
+            return redirect()->route('books')->with('error', '[Error] El registro solicitado no se encuentra en la base de datos');
         }
 
         return view('books.edit', compact('book', 'authors', 'categories', 'editorials'));
@@ -143,7 +141,7 @@ class BookController extends Controller
 
         if($book == null)
         {
-            return view('books.index')->with('error', '[Error] El registro solicitado no se encuentra en la base de datos');
+            return redirect()->route('books')->with('error', '[Error] El registro solicitado no se encuentra en la base de datos');
         }
 
         $book->title = $request->title;
@@ -164,7 +162,6 @@ class BookController extends Controller
             $book->image_url = $url;
         }
 
-        $book->quantity = $request->quantity;
         $book->available = $request->quantity;
         $book->cost = $request->cost;
         $book->sale_price = $request->cost + ($request->cost * $this->profitPercentage);
@@ -185,6 +182,38 @@ class BookController extends Controller
         {
             return redirect()->route('books')->with('error', '[Informacion] Operacion fallida');
         }
+    }
 
+    ///Show method to call show page
+    public function show($book_id)
+    {
+        $book = Book::find($book_id);
+
+        if($book == null)
+        {
+            return redirect()->route('books')->with('error', '[Error] El registro solicitado no se encuentra en la base de datos');
+        }
+
+        return view('books.show', compact('book'));
+    }
+
+    //Delete method
+    public function delete($book_id)
+    {
+        $book = Book::find($book_id);
+
+        if($book != null)
+        {
+            //Delete current image
+            $url = str_replace('/storage', 'public', $book->image_url);
+            Storage::delete($url);
+
+            $book->delete();
+            return redirect()->route('books')->with('success', '[Informacion] Registro eliminado correctamente');
+        }
+        else
+        {
+            return redirect()->route('books')->with('error', '[Informacion] Operacion fallida');
+        }
     }
 }

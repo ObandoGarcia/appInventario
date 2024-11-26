@@ -6,7 +6,7 @@
         <br>
         <br>
         <div class="row">
-            <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-10">
+            <div class="col col-12">
                 <form action="{{ route('delete_editorial', $editorial->id) }}" method="POST">
                     @csrf
                     @method('DELETE')

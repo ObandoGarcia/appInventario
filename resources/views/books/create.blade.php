@@ -6,7 +6,7 @@
         <br>
         <br>
         <div class="row">
-            <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-10">
+            <div class="col col-12">
                 <form action="{{ route('save_book') }}" enctype="multipart/form-data" method="POST">
                     @csrf
 
@@ -37,16 +37,16 @@
                     <div class="mb-3">
                         <label class="form-label" for="image_title">Imagen</label>
                         <br>
-                        <input type="file" name="image">
+                        <input type="file" name="image" class="form-control">
                         @error('image')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label" for="quantity">Cantidad</label>
-                        <input type="number" name="quantity" class="form-control" value="{{ old('quantity') }}" step="1">
-                        @error('quantity')
+                        <label class="form-label" for="available">Cantidad</label>
+                        <input type="number" name="available" class="form-control" value="{{ old('available') }}" step="1">
+                        @error('available')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>

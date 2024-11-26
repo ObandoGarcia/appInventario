@@ -66,7 +66,7 @@ class CategoryController extends Controller
 
         if($category == null)
         {
-            return view('categories.index')->with('error', '[Error] El registro solicitado no se encuentra en la base de datos');
+            return redirect()->route('categories')->with('error', '[Error] El registro solicitado no se encuentra en la base de datos');
         }
 
         return view('categories.edit', compact('category'));
@@ -81,7 +81,7 @@ class CategoryController extends Controller
         
         if($category == null)
         {
-            return view('categories.index')->with('error', '[Error] El registro solicitado no se encuentra en la base de datos');
+            return redirect()->route('categories')->with('error', '[Error] El registro solicitado no se encuentra en la base de datos');
         }
 
         $category->category = $request->category;

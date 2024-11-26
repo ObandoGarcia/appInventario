@@ -6,7 +6,7 @@
         <br>
         <br>
         <div class="row">
-            <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-10">
+            <div class="col col-12">
                 <form action="{{ route('update_book', $book->id) }}" enctype="multipart/form-data" method="POST">
                     @csrf
                     @method('PUT')
@@ -50,9 +50,9 @@
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label" for="quantity">Cantidad</label>
-                        <input type="number" name="quantity" class="form-control" value="{{ $book->quantity }}" step="1">
-                        @error('quantity')
+                        <label class="form-label" for="available">Cantidad</label>
+                        <input type="number" name="available" class="form-control" value="{{ $book->available }}" step="1">
+                        @error('available')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
@@ -68,9 +68,9 @@
                     <div class="mb-3">
                         <label class="form-label" for="state">Estado</label>
                         <select name="state" class="form-select">
-                            <option value="{{ $book->state }}"selected>{{ $book->state }}</option>
-                            <option value="disponible">Disponible</option>
-                            <option value="no disponible">No disponible</option>
+                            <option value="{{ $book->state }}" selected>{{ $book->state }}</option>
+                            <option value="disponible">disponible</option>
+                            <option value="no disponible">no disponible</option>
                         </select>
                     </div>
                     

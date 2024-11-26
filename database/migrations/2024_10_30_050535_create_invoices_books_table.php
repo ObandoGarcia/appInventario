@@ -22,6 +22,7 @@ return new class extends Migration
                 ->nullOnDelete();
             $table->integer('quantity');
             $table->decimal('price', total: 8, places: 2, unsigned:false);
+            $table->decimal('total_price', total:8, places: 2, unsigned:false);
             $table->foreignId('user_id')
                 ->nullable()
                 ->constrained('users')

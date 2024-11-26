@@ -32,6 +32,18 @@
                     <span>Libros</span>
                 </a>
             </li>
+            <li class="sidebar-item">
+                <a href="{{ route('customers') }}" class="sidebar-link">
+                    <i class="bi bi-person-check"></i>
+                    <span>Clientes</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="{{ route('invoices') }}" class="sidebar-link">
+                    <i class="bi bi-receipt"></i>
+                    <span>Facturas</span>
+                </a>
+            </li>
         </ul>
         <div class="sidebar-footer">
             <a href="{{ route('close_session') }}" class="sidebar-link">

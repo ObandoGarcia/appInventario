@@ -2,12 +2,12 @@
 
 @section('dinamic-content')
     <div class="container">
-        <h1>Agregar un nuevo autor</h1>
+        <h1>Agregar un nuevo cliente</h1>
         <br>
         <br>
         <div class="row">
             <div class="col col-12">
-                <form action="{{ route('save_author') }}" method="POST">
+                <form action="{{ route('save_customer') }}" method="POST">
                     @csrf
 
                     <div class="mb-3">
@@ -27,9 +27,17 @@
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label" for="nationality">Nacionalidad</label>
-                        <input type="text" name="nationality" class="form-control" value="{{ old('nationality') }}">
-                        @error('nationality')
+                        <label class="form-label" for="phone">Telefono</label>
+                        <input type="text" name="phone" class="form-control" value="{{ old('phone') }}">
+                        @error('phone')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="code">Codigo de cliente</label>
+                        <input type="text" name="code" class="form-control" value="{{ old('code') }}">
+                        @error('code')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>

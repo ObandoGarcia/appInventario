@@ -66,7 +66,7 @@ class EditorialController extends Controller
 
         if($editorial == null)
         {
-            return view('editorials.index')->with('error', '[Error] El registro solicitado no se encuentra en la base de datos');
+            return redirect()->route('editorials')->with('error', '[Error] El registro solicitado no se encuentra en la base de datos');
         }
 
         return view('editorials.edit', compact('editorial'));
@@ -81,7 +81,7 @@ class EditorialController extends Controller
 
         if($editorial == null)
         {
-            return view('editorials.index')->with('error', '[Error] El registro solicitado no se encuentra en la base de datos');
+            return redirect()->route('editorials')->with('error', '[Error] El registro solicitado no se encuentra en la base de datos');
         }
 
         $editorial->name = $request->name;
