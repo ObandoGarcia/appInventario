@@ -34,15 +34,18 @@
                                     <a href="{{ route('edit_editorial', $itemEditorial->id) }}">
                                         <button class="btn btn-warning"><i class="bi bi-pencil-square"></i> Editar</button>
                                     </a>
-                                    <a href="{{ route('show_editorial', $itemEditorial->id) }}">
-                                        <button class="btn btn-danger"><i class="bi bi-trash"></i> Eliminar</button>
-                                    </a>
+                                    @role('administrador')
+                                        <a href="{{ route('show_editorial', $itemEditorial->id) }}">
+                                            <button class="btn btn-danger"><i class="bi bi-trash"></i> Eliminar</button>
+                                        </a>
+                                    @endrole
                                 </div>
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
+            {{ $editorials->links() }}
         </div>
     </div>
 @endsection

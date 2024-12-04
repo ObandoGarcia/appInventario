@@ -26,7 +26,7 @@ class EditorialController extends Controller
     //Index method to call the entire list of editorials
     public function index()
     {
-        $editorials = Editorial::all();
+        $editorials = Editorial::orderBy('id', 'desc')->paginate(10);
 
         return view('editorials.index', compact('editorials'));
     }

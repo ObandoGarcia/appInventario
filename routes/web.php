@@ -18,6 +18,11 @@ Route::view('dashboard', 'dashboard')->name('dashboard')->middleware('auth');
 //User routes
 Route::post('iniciar_sesion', [UserController::class, 'start_session'])->name('start_session');
 Route::get('cerrar_sesion', [UserController::class, 'close_session'])->name('close_session');
+Route::get('usuarios', [UserController::class, 'index'])->name('users')->middleware('auth');
+Route::get('crear_usuario', [UserController::class, 'create'])->name('create_user')->middleware('auth');
+Route::post('guardar_usuario', [UserController::class, 'store'])->name('save_user')->middleware('auth');
+Route::get('ediar_usuario/{user_id}', [UserController::class, 'edit'])->name('edit_user')->middleware('auth');
+Route::put('actualizar_usuario/{user_id}', [UserController::class, 'update'])->name('update_user')->middleware('auth');
 
 //Author routes
 Route::get('autores', [AuthorController::class, 'index'])->name('authors')->middleware('auth');
@@ -54,6 +59,7 @@ Route::get('editar_libro/{book_id}', [BookController::class, 'edit'])->name('edi
 Route::put('actualizar_libro/{book_id}', [BookController::class, 'update'])->name('update_book')->middleware('auth');
 Route::get('ver_libro/{book_id}', [BookController::class, 'show'])->name('show_book')->middleware('auth');
 Route::delete('eliminar_libro/{book_id}', [BookController::class, 'delete'])->name('delete_book')->middleware('auth');
+Route::post('buscar_libro', [BookController::class, 'searchBook'])->name('search_book')->middleware('auth');
 
 //Customer routes
 Route::get('clientes', [CustomerController::class, 'index'])->name('customers')->middleware('auth');
@@ -74,6 +80,8 @@ Route::get('ver_factura/{invoice_id}', [InvoiceController::class, 'show'])->name
 Route::delete('eliminar_factura/{invoice_id}', [InvoiceController::class, 'delete'])->name('delete_invoice')->middleware('auth');
 Route::get('anular_factura/{invoice_id}', [InvoiceController::class, 'cancel'])->name('cancel_invoice')->middleware('auth');
 Route::put('confirmar_anular_factura/{invoice_id}', [InvoiceController::class, 'changeStateToInvalid'])->name('change_invoice_to_invalid')->middleware('auth');
+Route::put('pagar_factura/{invoice_id}', [InvoiceController::class, 'changeStateToPaid'])->name('change_state_to_paid')->middleware('auth');
+Route::post('buscar_factura', [InvoiceController::class, 'searchInvoice'])->name('search_invoice')->middleware('auth');
 
 //Inovices-books routes
 Route::get('detalle_factura/{invoice_id}', [InvoiceBookController::class, 'invoiceDetail'])->name('invoice_detail')->middleware('auth');
@@ -83,3 +91,4 @@ Route::put('agregar_libro_cantidad/{invoice_id}', [InvoiceBookController::class,
 Route::put('quitar_libro_factura/{invoice_id}', [InvoiceBookController::class, 'decrementBookQuantityToInvoice'])->name('decresase_book')->middleware('auth');
 Route::get('eliminar_libro_factura/{inovice_book_id}', [InvoiceBookController::class, 'delete'])->name('delete_book_invoice')->middleware('auth');
 Route::delete('eliminar_libro_factura/{inovice_book_id}', [InvoiceBookController::class, 'deleteInvoiceBook'])->name('delete_invoice_book')->middleware('auth');
+Route::get('generar_pdf/{invoice_id}', [InvoiceBookController::class, 'createPDF'])->name('createPdf')->middleware('auth');

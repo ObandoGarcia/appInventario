@@ -32,7 +32,9 @@
                     </div>
 
                     <br>
-                    <input type="submit" value="Eliminar registro" class="btn btn-danger">
+                    @role('administrador')
+                        <input type="submit" value="Eliminar registro" class="btn btn-danger">
+                    @endrole
                 </form>
             </div>
         </div>

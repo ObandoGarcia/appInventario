@@ -37,15 +37,18 @@
                                     <a href="{{ route('edit_customer', $itemCustomer->id) }}">
                                         <button class="btn btn-warning"><i class="bi bi-pencil-square"></i> Editar</button>
                                     </a>
-                                    <a href="{{ route('show_customer', $itemCustomer->id) }}">
-                                        <button class="btn btn-danger"><i class="bi bi-trash"></i> Eliminar</button>
-                                    </a>
+                                    @role('administrador')
+                                        <a href="{{ route('show_customer', $itemCustomer->id) }}">
+                                            <button class="btn btn-danger"><i class="bi bi-trash"></i> Eliminar</button>
+                                        </a>
+                                    @endrole                                  
                                 </div>
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
+            {{ $customers->links() }}
         </div>
     </div>
 @endsection

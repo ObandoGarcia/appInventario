@@ -9,8 +9,8 @@
         </div>
         @endif
         <br>
-        <h1>Autores de libros</h1>
-        <a href="{{ route('create_author') }}"><button class="btn btn-primary"><i class="bi bi-plus-circle"></i> Agregar autor</button></a>
+        <h1>Usuarios del sistema</h1>
+        <a href="{{ route('create_user') }}"><button class="btn btn-primary"><i class="bi bi-plus-circle"></i> Agregar usuario</button></a>
         <br>
         <br>
         <div class="table-responsive">
@@ -18,36 +18,27 @@
                 <thead>
                     <tr>
                         <th>Nombre</th>
-                        <th>Apellido</th>
-                        <th>Nacionalidad</th>
-                        <th>Creado/Modificado por</th>
+                        <th>Email</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody class="table-group-divider">
-                    @foreach ($authors as $authorItem)
+                    @foreach ($users as $userItem)
                         <tr>
-                            <td>{{ $authorItem->firstname }}</td>
-                            <td>{{ $authorItem->lastname }}</td>
-                            <td>{{ $authorItem->nationality }}</td>
-                            <td>{{ $authorItem->users->name }}</td>
+                            <td>{{ $userItem->name }}</td>
+                            <td>{{ $userItem->email }}</td>
                             <td>
                                 <div class="btn-group btn-group-sm" role="group">
-                                    <a href="{{ route('edit_author', $authorItem->id) }}">
+                                    <a href="{{ route('edit_user', $userItem->id) }}">
                                         <button class="btn btn-warning"><i class="bi bi-pencil-square"></i> Editar</button>
                                     </a>
-                                    @role('administrador')
-                                        <a href="{{ route('show_author', $authorItem->id) }}">
-                                            <button class="btn btn-danger"><i class="bi bi-trash3-fill"></i> Eliminar</button>
-                                        </a>
-                                    @endrole
                                 </div>
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
-            {{ $authors->links()}}
+            {{ $users->links()}}
         </div>
     </div>
 @endsection

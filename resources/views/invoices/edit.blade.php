@@ -43,7 +43,9 @@
                     </div>
 
                     <br>
-                    <input type="submit" value="Actualizar registro" class="btn btn-warning">
+                    @role('administrador')
+                        <input type="submit" value="Actualizar registro" class="btn btn-warning">
+                    @endrole
                 </form>
             </div>
         </div>

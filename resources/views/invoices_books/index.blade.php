@@ -16,9 +16,13 @@
         </h2>
         <br>
         @if ($invoice->state != 'anulada')
-            <a href="{{ route('add_book_invoice', $invoice->id) }}"><button class="btn btn-primary">
-                    <i class="bi bi-plus-circle"></i> Agregar libro</button>
-            </a>
+            @if ($invoice->state == 'pagado')
+                <p>¡Ya no se puede agregar libros a esta fatura!</p>
+            @else
+                <a href="{{ route('add_book_invoice', $invoice->id) }}"><button class="btn btn-primary">
+                        <i class="bi bi-plus-circle"></i> Agregar libro</button>
+                </a>
+            @endif
         @endif
 
         <br>
@@ -42,8 +46,8 @@
                             <td>$ {{ $invoice_bookItem->price }}</td>
                             <td>$ {{ $invoice_bookItem->total_price }}</td>
                             <td>
-                                @if ($invoice_bookItem->invoices->state == 'anulada')
-                                    <p>Sin acciones disponibles!</p>
+                                @if ($invoice_bookItem->invoices->state == 'anulada' || $invoice_bookItem->invoices->state == 'pagado' )
+                                    <p>¡Sin acciones disponibles!</p>
                                 @else
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                         data-bs-target="#modalAddBook{{ $invoice_bookItem->id }}">
@@ -110,7 +114,7 @@
                                     </div>
                                     <div class="modal-body">
                                         <h1>{{ $invoice_bookItem->books->title }}</h1>
-                                        <p>Maximo para quitar: {{ $invoice_bookItem->available }}</p>
+                                        <p>Maximo para quitar: {{ $invoice_bookItem->quantity }}</p>
 
                                         <form action="{{ route('decresase_book', $invoice_bookItem->id) }}" method="POST">
                                             @csrf
@@ -138,7 +142,9 @@
                 </tbody>
             </table>
 
-            <button> Generar pdf</button>
+            <a href="{{ route('createPdf', $invoice->id) }}">
+                <button class="btn btn-primary"><i class="bi bi-filetype-pdf"></i> Generar pdf</button>
+            </a>
         </div>
     </div>
 @endsection

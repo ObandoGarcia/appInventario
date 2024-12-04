@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Author;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
@@ -14,13 +15,13 @@ class DatabaseSeeder extends Seeder
         $usuario = new User();
         $usuario->name = 'Administrador';
         $usuario->email = 'administrador@admin.com';
-        $usuario->password = Hash::make('ecuacion');
+        $usuario->password = Hash::make('administrador');
         $usuario->save();
 
         $usuario2 = new User();
         $usuario2->name = 'Usuario';
         $usuario2->email = 'usuario@user.com';
-        $usuario2->password = Hash::make('primergrado');
+        $usuario2->password = Hash::make('usuario');
         $usuario2->save();
 
         $rol1 = Role::create(['name' => 'administrador']);

@@ -18,12 +18,13 @@
 
                     <div class="mb-3">
                         <label class="form-label" for="internal_code">Codigo interno</label>
-                        <input type="text" name="internal_code" class="form-control" value="{{ $book->internal_code }}" readonly>
+                        <input type="text" name="internal_code" class="form-control" value="{{ $book->internal_code }}"
+                            readonly>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label" for="isbn">ISBN</label>
-                        <input type="text" name="isbn" class="form-control" value="{{ $book->isbn}}" readonly>
+                        <input type="text" name="isbn" class="form-control" value="{{ $book->isbn }}" readonly>
                     </div>
 
                     <div class="mb-3">
@@ -46,29 +47,36 @@
                         <label class="form-label" for="state">Estado</label>
                         <input type="text" name="state" class="form-control" value="{{ $book->state }}" readonly>
                     </div>
-                    
+
                     <div class="mb-3">
                         <label class="form-label" for="entry_date">Fecha de ingreso</label>
-                        <input type="datetime-local" name="entry_date" class="form-control" value="{{ $book->entry_date }}" readonly>
+                        <input type="datetime-local" name="entry_date" class="form-control" value="{{ $book->entry_date }}"
+                            readonly>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label" for="author">Autor</label>
-                        <input type="text" name="author" class="form-control" value="{{ $book->authors->firstname . " " . $book->authors->lastname }}" readonly>
+                        <input type="text" name="author" class="form-control"
+                            value="{{ $book->authors->firstname . ' ' . $book->authors->lastname }}" readonly>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label" for="categories">Categoria</label>
-                        <input type="text" name="author" class="form-control" value="{{ $book->categories->category }}" readonly>
+                        <input type="text" name="author" class="form-control" value="{{ $book->categories->category }}"
+                            readonly>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label" for="editorials">Editorial</label>
-                        <input type="text" name="author" class="form-control" value="{{ $book->editorials->name }}" readonly>
+                        <input type="text" name="author" class="form-control" value="{{ $book->editorials->name }}"
+                            readonly>
                     </div>
 
                     <br>
-                    <input type="submit" value="Eliminar registro" class="btn btn-danger">
+                    @role('administrador')
+                        <input type="submit" value="Eliminar registro" class="btn btn-danger">
+                    @endrole
+                    
                 </form>
             </div>
         </div>

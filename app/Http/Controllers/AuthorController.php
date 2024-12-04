@@ -27,7 +27,7 @@ class AuthorController extends Controller
     //Index method to call the entire list of authors
     public function index()
     {
-        $authors = Author::all();
+        $authors = Author::orderBy('id', 'desc')->paginate(10);
 
         return view('authors.index', compact('authors'));
     }

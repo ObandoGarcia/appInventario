@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Models\Invoice;
 use App\Models\InvoiceBook;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
 class InvoiceBookController extends Controller
@@ -157,5 +158,17 @@ class InvoiceBookController extends Controller
     }
 
     //Create PDF document
+    public function createPDF($invoice_id)
+    {
+        $invoice_book = InvoiceBook::where('invoice_id', $invoice_id)->get();
+        $invoice = Invoice::find($invoice_id);
+        $invoice_total_price = InvoiceBook::where('invoice_id', $invoice_id)->sum('total_price');
 
+        date_default_timezone_set("America/El_Salvador");
+        $fecha = date("Y-m-d H:m:s");
+
+        $pdf = Pdf::loadView('invoices_books.invoice', compact('invoice_book', 'invoice', 'invoice_total_price', 'fecha'));
+
+        return $pdf->stream();
+    }
 }

@@ -8,11 +8,7 @@
 
         <div class="alert alert-warning" role="alert">
             <h3>¡Esta accion no se puede deshacer!</h3>
-            <h4>Ten en cuenta lo siguiente:</h4>
-            <ol>
-                <li> - Los libros que han sido agregados al detalle de la factura se regresaran a la tabla de libros.</li>
-                <li> - No se podra regresar ni restaurar de ningun modo.</li>
-            </ol>
+            <p>No se podra regresar ni restaurar de ningun modo.</p>
         </div>
 
         <div class="row">
@@ -37,7 +33,9 @@
                     </div>
 
                     <br>
-                    <input type="submit" value="Anular factura" class="btn btn-warning">
+                    @role('administrador')
+                        <input type="submit" value="Anular factura" class="btn btn-warning">
+                    @endrole
                 </form>
             </div>
         </div>

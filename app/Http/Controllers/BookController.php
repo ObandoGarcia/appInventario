@@ -20,7 +20,7 @@ class BookController extends Controller
         'internal_code' => ['nullable', 'string', 'min:5', 'max:15'],
         'isbn' => ['nullable', 'string', 'min:13'],
         'image' => ['max:2048', 'image'],
-        'quantity' => ['required', 'numeric', 'min:0'],
+        'available' => ['required', 'numeric', 'min:0'],
         'cost' => ['required', 'min:0'],
         'entry_date' => ['nullable', 'date'],
         'authors' => ['nullable'],
@@ -30,14 +30,14 @@ class BookController extends Controller
 
     private array $errorMessages = [
         'title.required' => 'El tiltulo es requerido',
-        'quantity.required' => 'La cantidad es requerida',
+        'available.required' => 'La cantidad es requerida',
         'cost.required' => 'El costo de compra es requerido',
         'image.max' => 'El tamanio maximo de la imagen es de 2048 mb',
         'string' => 'Este campo debe ser texto',
         'title.min' => 'Este campo debe ser mayor a 3 caracteres',
         'internal_code.min' => 'Este campo debe ser mayor a 5 caracteres',
         'isbn.min' => 'Este campo debe ser mayor a 12 caracteres',
-        'quantity.min' => 'Este campo no puede ser menor a 0',
+        'available.min' => 'Este campo no puede ser menor a 0',
         'cost.min' => 'Este campo no debe ser menor a 0',
         'title.max' => 'Este campo no debe se mayor a 75 caracteres',
         'internal_code.max' => 'Este campo no debe ser mayor a 15 caracteres',
@@ -49,9 +49,23 @@ class BookController extends Controller
     //Index method to call the entire list of books
     public function index()
     {
-        $books = Book::orderBy('id', 'desc')->paginate(10);
+        $books = Book::orderBy('id', 'desc')->paginate(5);
 
         return view('books.index', compact('books'));
+    }
+
+    //Search method
+    public function searchBook(Request $request)
+    {
+        $searchField = "";
+
+        if($request->search)
+        {
+            $searchField = $request->search;
+            $books = Book::search($searchField)->paginate(5);
+
+            return view('books.index', compact('books'));
+        }
     }
 
     //Create method to call the create page
@@ -88,7 +102,7 @@ class BookController extends Controller
             $book->image_url = $url;
         }
 
-        $book->available = $request->quantity;
+        $book->available = $request->available;
         $book->cost = $request->cost;
         $book->sale_price = $request->cost + ($request->cost * $this->profitPercentage);
         $book->state = $request->state;
@@ -162,7 +176,7 @@ class BookController extends Controller
             $book->image_url = $url;
         }
 
-        $book->available = $request->quantity;
+        $book->available = $request->available;
         $book->cost = $request->cost;
         $book->sale_price = $request->cost + ($request->cost * $this->profitPercentage);
         $book->state = $request->state;

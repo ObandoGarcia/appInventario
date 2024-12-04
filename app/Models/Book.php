@@ -5,12 +5,25 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Laravel\Scout\Searchable;
 
 class Book extends Model
 {
     use HasFactory;
+    use Searchable;
 
     protected $table = 'books';
+
+    //Using Laravel Scout
+    public function toSearchableArray(): array
+    {
+        return [
+            'title' => $this->title,
+            'internal_code' => $this->internal_code,
+            'isbn' => $this->isbn,
+            'entry_date' => $this->entry_date
+        ];
+    }
 
     //Creating relationships to database tables
     //Relationship between the "books" table and the "users" table

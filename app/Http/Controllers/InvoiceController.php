@@ -28,9 +28,23 @@ class InvoiceController extends Controller
     //Index method to call the entire list of invoices
     public function index()
     {
-        $invoices = Invoice::all();
+        $invoices = Invoice::orderBy('id', 'desc')->paginate(10);
 
         return view('invoices.index', compact('invoices'));
+    }
+
+    //Search method
+    public function searchInvoice(Request $request)
+    {
+        $searchField = "";
+
+        if($request->search)
+        {
+            $searchField = $request->search;
+            $invoices = Invoice::search($searchField)->paginate(5);
+
+            return view('invoices.index', compact('invoices'));
+        }
     }
 
     //Create method to call the create page
@@ -162,7 +176,7 @@ class InvoiceController extends Controller
         return view('invoices.cancel', compact('invoice'));
     }
 
-    //Change state method to set 'anulda' state to a invoice 
+    //Change state method to set 'anulada' state to a invoice 
     public function changeStateToInvalid($invoice_id)
     {
         $invoice = Invoice::find($invoice_id);
@@ -185,5 +199,29 @@ class InvoiceController extends Controller
         {
             return redirect()->route('invoices')->with('error', '[Informacion] Operacion fallida');
         }
+    }
+
+    //Change state method to set 'pagada' state to a invoice
+    public function changeStateToPaid($invoice_id)
+    {
+        $invoice = Invoice::find($invoice_id);
+
+        if($invoice == null)
+        {
+            return redirect()->route('invoices')->with('error', '[Error] El registro solicitado no se encuentra en la base de datos');
+        }
+
+        $invoice->state = 'pagado';
+        $result = $invoice->update();
+
+        if($result)
+        {
+            return redirect()->route('invoices')->with('success', '[Informacion] Registro actualizado correctamente');
+        }
+        else
+        {
+            return redirect()->route('invoices')->with('error', '[Informacion] Operacion fallida');
+        }
+
     }
 }
